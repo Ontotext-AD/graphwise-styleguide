@@ -1,9 +1,20 @@
-const base = require('../../eslint.config.base.js');
-
 module.exports = [
-  ...base,
   {
-    files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
+    ignores: ['**/node_modules/**', '**/dist/**'],
+    rules: {
+      eqeqeq: 'error',
+      curly: 'error',
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      indent: ['error', 2],
+      'no-multiple-empty-lines': ['error', { max: 1 }],
+      'no-redeclare': ['error', { builtinGlobals: false }],
+      'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+      'no-unused-vars': 'warn'
+    },
+  },
+  {
+    files: ['**/*.js'],
     languageOptions: {
       parser: require('@babel/eslint-parser'),
       parserOptions: {
