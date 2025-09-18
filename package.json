@@ -1,45 +1,35 @@
 {
-  "name": "ontotext-brand-theme",
-  "version": "0.0.1",
-  "description": "Styles and resources for Ontotext web applications",
-  "contributors": [
-    {
-      "name": "Desislava Hristova",
-      "email": "desislava.hristova@ontotext.com"
-    },
-    {
-      "name": "Mihail Radkov",
-      "email": "mihail.radkov@ontotext.com"
-    },
-    {
-      "name": "Svilen Velikov",
-      "email": "svilen.velikov@ontotext.com"
-    },
-    {
-      "name": "Teodossi Dossev",
-      "email": "teodossi.dossev@ontotext.com"
-    }
-  ],
-  "files": [
-    "build/",
-    "src/"
-  ],
+  "name": "@ontotext/styleguide",
   "scripts": {
-    "build": "sass src/styles:build/css",
-    "watch": "sass --watch src/styles:build/css",
-    "serve": "live-server --entry-file=index.html",
-    "test": "concurrently \"npm run watch\" \"npm run serve\"",
-    "pub:dry": "npm publish ./ --dry-run",
-    "pub": "npm publish ./"
+    "build": "rm -rf dist && npm run build:tokens",
+    "build:tokens": "node src/index.js",
+    "lint": "eslint --ext js,mjs,cjs",
+    "lint:fix": "eslint --fix --ext js,mjs,cjs",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
+    "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
+    "watch-tests": "cross-env BABEL_ENV=test jest --watch"
   },
-  "author": {
-    "name": "\"Sirma AI\" JSC, trading as Ontotext",
-    "url": "https://www.ontotext.com/"
-  },
-  "license": "Apache-2.0",
   "devDependencies": {
-    "concurrently": "^5.2.0",
-    "live-server": "^1.2.1",
-    "sass": "^1.26.5"
+    "@babel/core": "^7.28.3",
+    "@babel/eslint-parser": "^7.28.0",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@types/jest": "^30.0.0",
+    "babel-jest": "^30.1.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9.34.0",
+    "eslint-config-important-stuff": "^1.1.0",
+    "glob": "^11.0.3",
+    "jest": "^30.1.0",
+    "jest-cli": "^30.1.0",
+    "jest-environment-jsdom": "^30.1.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-scss": "^6.12.1"
+  },
+  "dependencies": {
+    "@tokens-studio/sd-transforms": "^2.0.1",
+    "style-dictionary": "^5.0.2"
   }
 }
