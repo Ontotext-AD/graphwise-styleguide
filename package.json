@@ -1,5 +1,6 @@
 {
-  "name": "@ontotext/styleguide",
+  "name": "graphwise-styleguide",
+  "version": "0.0.1-init1",
   "scripts": {
     "build": "rm -rf dist && npm run build:tokens",
     "build:tokens": "node src/index.js",
@@ -10,6 +11,9 @@
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch"
   },
+  "files": [
+    "dist/"
+  ],
   "devDependencies": {
     "@babel/core": "^7.28.3",
     "@babel/eslint-parser": "^7.28.0",
