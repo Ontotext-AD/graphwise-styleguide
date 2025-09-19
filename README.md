@@ -35,6 +35,15 @@ Install via npm:
 npm install graphwise-styleguide
 ```
 
+## Tokens browser
+Tokens file is big and hard to read in raw json format. To make it easier to browse and understand the tokens, you can
+run the following command
+```bash
+npm run generate-tokens-html
+```
+This will generate a `tokens-browser.html` file in the root directory of the repository. Open this file in your browser
+to view the tokens in a more user-friendly format.
+
 ## Usage
 
 This workflow describes how to update and integrate design tokens and styles from Figma into the styleguide module and 
