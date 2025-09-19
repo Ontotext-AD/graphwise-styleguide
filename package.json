@@ -10,7 +10,8 @@
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
-    "watch-tests": "cross-env BABEL_ENV=test jest --watch"
+    "watch-tests": "cross-env BABEL_ENV=test jest --watch",
+    "generate-tokens-html": "node src/generate-tokens-html.js"
   },
   "files": [
     "dist/"
