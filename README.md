@@ -1,43 +1,80 @@
-# ontotext-brand-theme
+# Graphwise Styleguide
 
-A package containing UI theme css and resources.
+Graphwise Styleguide is a comprehensive set of design and coding standards for building consistent, maintainable, 
+and scalable user interfaces across Graphwise projects. It provides a way to generate a styleguide stylesheet for 
+different applications based on styleguide tokens file prepared by UX designer. 
+This ensures a unified look and feel across all Graphwise products.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+
+## Introduction
+
+This module serves as the central styleguide for all Graphwise frontend projects. It includes:
+
+- Design tokens for colors, typography, spacing, and more in json format.
+- Utility function to generate CSS/SCSS stylesheets from the tokens.
+- Documentation and usage examples
+
+## Features
+
+- **Consistent Design Tokens:** Colors, fonts, spacing, and breakpoints.
+- **Stylesheet Generation:** Easily generate CSS/SCSS variables from design tokens.
+- **Documentation & Usage Examples:** Guidance for integrating tokens and stylesheets.
 
 ## Installation
 
-`npm install`
+Install via npm:
 
-## Build
-
-`npm run build` will process resources and output result in `build` directory.
-
-`npm run watch` will watch source files for changes and rebuild automatically.
-
-## Develope and test
-
-All styles and resources can be tested in the `index.html`. Import everything which is needed and check it in a browser.
-
-`npm run test` This is special command which runs the watch mode and opens the index.html file with a live-server that
-will reload the page whenever styles or resources are changed.
+```bash
+npm install graphwise-styleguide
+```
 
 ## Usage
 
-`npm install ontotext-visual-theme` installs the package in local node_modules. After that there are two basic scenarios available.
+This workflow describes how to update and integrate design tokens and styles from Figma into the styleguide module and 
+the application.
 
-### Link to resources directly in the html header
+### 1. Update in Figma
+- The UX developer updates the styleguide and design tokens in Figma.
 
-```html
-<link href="/node_modules/ontotext-visual-theme/build/css/theme.css" rel="stylesheet">
+### 2. Publish Tokens
+- The UX developer publishes the updated tokens to this repository, or exports them as a file and provides them to the
+UI developers.
+
+### 3. Update Tokens in Repo
+- The UI developer updates the tokens in the styleguide repository with the new version from Figma in case they were 
+manually exported.
+
+### 4. Rebuild Stylesheet
+- The UI developer rebuilds the `variables.css` stylesheet using the new tokens by running 
+```bash
+npm run build
 ```
 
-This requires the package from the node modules to be accessible/exposed by the web server or better have a script which moves the 
-sources in the public directory of your server and link from there.
+### 5. Publish New Package Version
+- The UI developer publishes a new version of the styleguide package to NPM, following semantic versioning.
 
-### Import styles in components
+### 6. Install Updated Styleguide
+- The UI developer installs the new styleguide version in the respective Graphwise application by updating its 
+`package.json`.
 
-In some `homepage.js` component:
+### 7. Optimize Styleguide
+The generated stylesheet is large and may contain variables unused in the particular application. To optimize the
+styleguide for the GraphDB Workbench application, the UI developer runs `npm run build` in the `packages/styleguide`
+module.
 
-```javascript
-import 'ontotext-visual-theme/build/css/theme.css';
-```
+## Notes
+- Always follow semantic versioning when publishing updates.
+- Ensure that unused variables are purged during the build process for optimal performance.
+- Coordinate closely between UX and UI teams for smooth updates.
 
-If the web application is bundled by e.g. webpack, the sources could be imported directly in javascript components.
+## License
+
+This project is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
+
