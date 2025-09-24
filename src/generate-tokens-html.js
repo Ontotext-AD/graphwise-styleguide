@@ -1,8 +1,6 @@
-// generate-tokens-html.js
-const fs = require('fs');
-const path = require('path');
-
-const tokens = require('../tokens/tokens.json');
+import fs from 'fs';
+import path from 'path';
+import tokens from '../tokens/tokens.json' with { type: 'json' };
 
 // Recursively extract all tokens, grouped by $type
 function extractTokens(obj, prefix = [], result = {}) {
