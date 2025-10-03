@@ -71,3 +71,4 @@ dist
 *.sw?
 .DS_Store
 /tokens-browser.html
+/modes/
