@@ -50,33 +50,35 @@ This workflow describes how to update and integrate design tokens and styles fro
 the application.
 
 ### 1. Update in Figma
-- The UX developer updates the styleguide and design tokens in Figma.
+- A UX developer updates the styleguide and design tokens in Figma.
 
 ### 2. Publish Tokens
-- The UX developer publishes the updated tokens to this repository, or exports them as a file and provides them to the
-UI developers.
+- A UX developer publishes the updated tokens to this repository in the `dev` branch, or exports them as a file and
+provides them to the UI developers.
 
 ### 3. Update Tokens in Repo
-- The UI developer updates the tokens in the styleguide repository with the new version from Figma in case they were 
-manually exported.
+- A UI developer updates the tokens in the styleguide repository with the new version from Figma in case they were 
+manually exported from Token Studio in Figma.
 
 ### 4. Rebuild Stylesheet
-- The UI developer rebuilds the `variables.css` stylesheet using the new tokens by running 
+- A UI developer generates the `dist/variables-dark.css` and `dist/variables-light.css` stylesheets by running 
 ```bash
 npm run build
 ```
 
 ### 5. Publish New Package Version
-- The UI developer publishes a new version of the styleguide package to NPM, following semantic versioning.
+- A UI developer publishes a new version of the styleguide package to NPM, following semantic versioning.
 
 ### 6. Install Updated Styleguide
-- The UI developer installs the new styleguide version in the respective Graphwise application by updating its 
+- A UI developer installs the new styleguide version in the respective Graphwise application by updating its 
 `package.json`.
 
 ### 7. Optimize Styleguide
-The generated stylesheet is large and may contain variables unused in the particular application. To optimize the
-styleguide for the GraphDB Workbench application, the UI developer runs `npm run build` in the `packages/styleguide`
-module.
+The generated stylesheets are large and may contain variables unused in the particular application. To optimize the
+styleguide in case for the GraphDB Workbench application, the UI developer runs `npm run build` in the 
+`packages/styleguide` module. This runs a custom script that purges unused variables from the generated stylesheets 
+based on the actual usage in the application stylesheets. The optimized stylesheets are then are exposed for loading in
+the application.
 
 ## Notes
 - Always follow semantic versioning when publishing updates.
