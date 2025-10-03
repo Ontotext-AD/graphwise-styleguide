@@ -3,6 +3,8 @@ import { register, expandTypesMap } from '@tokens-studio/sd-transforms';
 import fs from 'fs';
 import path from 'path';
 
+const TOKENS_FILEPATH = 'tokens/tokens.json';
+
 // will register them on StyleDictionary object
 // that is installed as a dependency of this package.
 register(StyleDictionary, {
@@ -58,7 +60,7 @@ const configuration = {
 function modifyTokensForMode(mode) {
     // eslint-disable-next-line no-console
     console.log(`########## Generating ${mode} mode tokens file ##########`);
-    const tokens = JSON.parse(fs.readFileSync('tokens/tokens.json', 'utf8'));
+    const tokens = JSON.parse(fs.readFileSync(TOKENS_FILEPATH, 'utf8'));
 
     const inverseMode = mode === 'Light' ? 'Dark' : 'Light';
     const theme = `theme/${inverseMode.toLowerCase()}`;
@@ -119,6 +121,10 @@ async function main() {
   darkConfig.platforms.css.files = [{
       ...filesConfig,
       destination: 'variables-dark.css',
+      options: {
+          ...filesConfig.options,
+          selector: ':root.dark'
+      }
   }];
   sd = new StyleDictionary(darkConfig);
   await sd.buildAllPlatforms();
