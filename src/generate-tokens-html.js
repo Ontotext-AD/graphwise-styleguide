@@ -203,5 +203,5 @@ const html = `
 </html>
 `;
 
-fs.writeFileSync(path.join(process.cwd(), "tokens-browser.html"), html);
+fs.writeFileSync(path.join(process.cwd(), "generated/tokens-browser.html"), html);
 console.log("✅ Generated tokens-browser.html with multi-ref, math, filter bar, and sticky headers");

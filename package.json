@@ -6,12 +6,14 @@
   "scripts": {
     "build": "rm -rf dist && npm run build:tokens",
     "build:tokens": "node src/index.js",
+    "compare-css-variables": "node src/compare-css-variables.js",
     "lint": "eslint --ext js,mjs,cjs",
     "lint:fix": "eslint --fix --ext js,mjs,cjs",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch",
+    "generate": "npm run compare-css-variables && npm run generate-tokens-html",
     "generate-tokens-html": "node src/generate-tokens-html.js"
   },
   "files": [
