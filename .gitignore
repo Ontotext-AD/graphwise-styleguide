@@ -72,3 +72,4 @@ dist
 .DS_Store
 /tokens-browser.html
 /modes/
+/generated/
