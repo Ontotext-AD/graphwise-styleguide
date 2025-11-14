@@ -38,7 +38,7 @@
     "stylelint-scss": "^6.12.1"
   },
   "dependencies": {
-    "@tokens-studio/sd-transforms": "^2.0.1",
+    "@tokens-studio/sd-transforms": "^2.0.2",
     "style-dictionary": "^5.0.4"
   }
 }
