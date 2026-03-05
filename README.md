@@ -50,24 +50,30 @@ This workflow describes how to update and integrate design tokens and styles fro
 the application.
 
 ### 1. Update in Figma
-- A UX developer updates the styleguide and design tokens in Figma.
+- A UX expert updates the styleguide and design tokens in Figma.
 
 ### 2. Publish Tokens
-- A UX developer publishes the updated tokens to this repository in the `dev` branch, or exports them as a file and
-provides them to the UI developers.
+- A UX expert publishes the updated tokens to this repository in the `gw-theme` branch.
+- Each commit must be accompanied by description what is the change in the design included in the coomit.
 
-### 3. Update Tokens in Repo
-- A UI developer updates the tokens in the styleguide repository with the new version from Figma in case they were 
-manually exported from Token Studio in Figma.
+### 3. Update Tokens in Repo and test
+A UI developer: 
+- updates its local `gw-theme` branch from the remote git repository
+- executes the build script `npm run build` to generate theme stylesheets with variables based on the tokens
+- links this npm module with the application where the design system is applied by executing `npm link` in this module and `npm link path/to/this/module` in the application's module that depend on this one.
+- Build and run the application to verify that all the changes are correct.
 
-### 4. Rebuild Stylesheet
-- A UI developer generates the `dist/variables-dark.css` and `dist/variables-light.css` stylesheets by running 
-```bash
-npm run build
-```
+### 4. Transfer changes to the `master` branch
+A UI developer:
+- creates a branch from the `gw-theme` branch
+- increases the package version following semantic versioning
+- creates a merge request against `master` branch
+- the merge request is reviewed and merged
 
 ### 5. Publish New Package Version
-- A UI developer publishes a new version of the styleguide package to NPM, following semantic versioning.
+A UI developer:
+- generates the `dist/variables-dark.css` and `dist/variables-light.css` stylesheets by running `npm run build` in the `master` branch 
+- publishes a new version of the styleguide package to NPM by executing `npm publish` (requires a login in NPM)
 
 ### 6. Install Updated Styleguide
 - A UI developer installs the new styleguide version in the respective Graphwise application by updating its 
