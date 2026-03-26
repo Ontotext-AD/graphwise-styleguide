@@ -67,6 +67,7 @@ A UI developer:
 A UI developer:
 - creates a branch from the `gw-theme` branch
 - increases the package version following semantic versioning
+- Rebases the newly created branch onto master. Uses interactive rebase and drops all irrelevant commits. Rebases only the latest, relevant commit/s. Squashes if they are more than one.
 - creates a merge request against `master` branch
 - the merge request is reviewed and merged
 
