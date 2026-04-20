@@ -22,6 +22,9 @@
   "files": [
     "dist/"
   ],
+  "bin": {
+    "gw-purge-css": "src/gw-purge-css.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.28.3",
     "@babel/eslint-parser": "^7.28.0",

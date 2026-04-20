@@ -10,6 +10,7 @@ This ensures a unified look and feel across all Graphwise products.
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
+- [Optimize Styleguide](#optimize-styleguide)
 - [Usage](#usage)
 - [License](#license)
 
@@ -43,6 +44,30 @@ npm run generate-tokens-html
 ```
 This will generate a `tokens-browser.html` file in the root directory of the repository. Open this file in your browser
 to view the tokens in a more user-friendly format.
+
+## Optimize Styleguide
+Graphwise Styleguide provides executable script `gw-purge-css`, which can be used to purge unused variables and generate
+light and dark theme CSS files with only the variables used in the application. It requires some configurations
+via JSON config file, which should be named `purge-css-config.json` and added at root level 
+(next to `package.json`).
+### Configuration
+| Name                | Description                                                    | Mandatory | Example value                                                                           | 
+|---------------------|----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------------------|
+| searchPaths         | Glob patterns for files to scan for CSS variable usage.        | Yes       | ["src/\*\*/\*.{html,js,ts,jsx,tsx,scss,css}"]                                           |
+| ignorePaths         | Paths to ignore during file scanning.                          | Yes       | ["\*\*/node_modules/\*\*", "\*\*/dist/\*\*", "\*\*/.git/\*\*", "src/global/theme/\*\*"] |
+| lightModeOutputFile | Path where the purged CSS file for light mode to be generated. | No        | "src/styles/theme/light-mode.css"                                                       | 
+| darkModeOutputFile  | Path where the purged CSS file for dark mode to be generated.  | No        | "src/styles/theme/dark-mode.css"                                                        | 
+
+To use `gw-purge-css` add graphwise-styleguide as dependency. The script can be added to package.json's scripts.   
+`--configFile` argument is optional and can be used to override default config file location.
+```
+"purge-css": "gw-purge-css --configFile ./config/purge-css-config.json"
+```  
+and then added to the build process. Or run manually with npx:  
+```bash
+npx gw-purge-css --configFile ./config/purge-css.config.json
+```
+
 
 ## Usage
 
