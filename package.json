@@ -4,8 +4,9 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "build": "rm -rf dist && npm run build:tokens",
+    "build": "rm -rf dist && npm run build:tokens && npm run build:gw-purge-css",
     "build:tokens": "node src/index.js",
+    "build:gw-purge-css": "node src/build-gw-purge-css.js",
     "compare-css-variables": "node src/compare-css-variables.js",
     "lint": "eslint --ext js,mjs,cjs",
     "lint:fix": "eslint --fix --ext js,mjs,cjs",
@@ -23,7 +24,7 @@
     "dist/"
   ],
   "bin": {
-    "gw-purge-css": "src/gw-purge-css.js"
+    "gw-purge-css": "dist/gw-purge-css.js"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",

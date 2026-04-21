@@ -2,16 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { CssVariablePurger } from "./css-variable-purger.js";
 
-
-const options = {};
-options.inputFile = undefined;
-options.outputFile = undefined;
-options.debug = 'true';
-options.includeDependencies = 'true';
-options.includeStringReferences = 'true';
-options.printUndeclaredWorkbenchCSSVariables = false;
-
-function verifyResult(result) {
+function verifyResult(result, options) {
   // eslint-disable-next-line no-console
   console.log('\n✨ Purge completed successfully!');
   // eslint-disable-next-line no-console
@@ -26,20 +17,20 @@ function verifyResult(result) {
     console.log('The following CSS variables are used but not declared:');
 
     const gWCSSVariables = [];
-    const workbenchCSSVariables = [];
+    const undeclaredCSSVariables = [];
 
     result.missedCSSVariables.forEach(variable => {
       if (variable.startsWith('--gw-')) {
         gWCSSVariables.push(variable);
       } else {
-        workbenchCSSVariables.push(variable);
+        undeclaredCSSVariables.push(variable);
       }
     });
     // eslint-disable-next-line no-console
     gWCSSVariables.forEach(variable => console.log(`  ❌  ${variable}`));
-    if (options.printUndeclaredWorkbenchCSSVariables) {
+    if (options.printUndeclaredCSSVariables) {
       // eslint-disable-next-line no-console
-      workbenchCSSVariables.forEach(variable => console.log(`  ⚠️  ${variable}`));
+      undeclaredCSSVariables.forEach(variable => console.log(`  ⚠️  ${variable}`));
     }
 
     // Exit with code 1 if at least one --gw- variable is missing
@@ -53,7 +44,7 @@ function purge(opts) {
   const purger = new CssVariablePurger(opts);
   return purger
     .purgeUnusedVariables()
-    .then(verifyResult)
+    .then(result => verifyResult(result, opts))
     .catch((error) => {
       console.error('\n❌ Purge failed:', error.message);
       if (opts.debug) {
@@ -66,17 +57,12 @@ function purge(opts) {
 
 export async function purgeCss(config) {
 
-  const finalOptions = {
-    ...options,
-    ...config
-  };
-
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
   if (config.lightModeOutputFile) {
     const variablesLightInputFile = path.join(__dirname, '..', '..', 'dist', 'variables-light.css');
     await purge({
-      ...finalOptions,
+      ...config,
       inputFile:  path.resolve(variablesLightInputFile),
       outputFile: config.lightModeOutputFile
     });
@@ -85,7 +71,7 @@ export async function purgeCss(config) {
   if (config.darkModeOutputFile) {
     const variablesDarkInputFile = path.join(__dirname, '..', '..', 'dist', 'variables-dark.css');
     await purge({
-      ...finalOptions,
+      ...config,
       inputFile: path.resolve(variablesDarkInputFile),
       outputFile: config.darkModeOutputFile
     });
