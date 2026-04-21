@@ -51,12 +51,18 @@ light and dark theme CSS files with only the variables used in the application. 
 via JSON config file, which should be named `purge-css-config.json` and added at root level 
 (next to `package.json`).
 ### Configuration
-| Name                | Description                                                    | Mandatory | Example value                                                                           | 
-|---------------------|----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------------------|
-| searchPaths         | Glob patterns for files to scan for CSS variable usage.        | Yes       | ["src/\*\*/\*.{html,js,ts,jsx,tsx,scss,css}"]                                           |
-| ignorePaths         | Paths to ignore during file scanning.                          | Yes       | ["\*\*/node_modules/\*\*", "\*\*/dist/\*\*", "\*\*/.git/\*\*", "src/global/theme/\*\*"] |
-| lightModeOutputFile | Path where the purged CSS file for light mode to be generated. | No        | "src/styles/theme/light-mode.css"                                                       | 
-| darkModeOutputFile  | Path where the purged CSS file for dark mode to be generated.  | No        | "src/styles/theme/dark-mode.css"                                                        | 
+| Name                          | Description                                                         | Mandatory | Default value | Example value                                                                           | 
+|-------------------------------|---------------------------------------------------------------------|-----------|---------------|-----------------------------------------------------------------------------------------|
+| searchPaths                   | Glob patterns for files to scan for CSS variable usage.             | Yes       |               | ["src/\*\*/\*.{html,js,ts,jsx,tsx,scss,css}"]                                           |
+| ignorePaths                   | Paths to ignore during file scanning.                               | No        |               | ["\*\*/node_modules/\*\*", "\*\*/dist/\*\*", "\*\*/.git/\*\*", "src/global/theme/\*\*"] |
+| lightModeOutputFile           | Path where the purged CSS file for light mode to be generated.      | No        |               | "src/styles/theme/light-mode.css"                                                       |
+| darkModeOutputFile            | Path where the purged CSS file for dark mode to be generated.       | No        |               | "src/styles/theme/dark-mode.css"                                                        |
+| safelist                      | CSS variables to always keep, regardless of usage.                  | No        | []            |                                                                                         |
+| safelistPatterns              | Regex patterns for CSS variable families to keep.                   | No        | []            |                                                                                         |
+| debug                         | Enable detailed logging output                                      | No        | false         |                                                                                         |
+| includeStringReferences       | Include CSS variables found in string literals                      | No        | true          |                                                                                         |
+| includeDependencies           | Include variables that are dependencies of used variables.          | No        | true          |                                                                                         |
+| printUndeclaredCSSVariables   | Print variables, which are used but not declared in the styleguide. | No        | false         |                                                                                         |
 
 To use `gw-purge-css` add graphwise-styleguide as dependency. The script can be added to package.json's scripts.   
 `--configFile` argument is optional and can be used to override default config file location.

@@ -26,4 +26,10 @@ if (!fs.existsSync(configFile)) {
 }
 
 const config = JSON.parse(fs.readFileSync(configFile), "utf8") || {};
+
+if (!config.searchPaths) {
+    console.log('Configuration property "searchPaths" is mandatory.');
+    process.exit(1);
+}
+
 void purgeCss(config);
