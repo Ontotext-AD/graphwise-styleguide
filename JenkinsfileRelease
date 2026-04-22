@@ -53,6 +53,8 @@ pipeline {
             steps {
                 script {
                     withNode(image: NODE_IMAGE) {
+                    git_cmd.checkout(branch: params.GIT_BRANCH)
+
                         npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
 
                         withKsm(application: [
@@ -96,7 +98,7 @@ pipeline {
                     sh 'git config --global user.name "$GIT_USER"'
                     sh 'git config --global user.email "$GIT_USER@users.noreply.github.com"'
 
-                    sh 'git remote set-url origin git@github.com:Ontotext-AD/ontotext-yasgui.git'
+                    sh 'git remote set-url origin git@github.com:Ontotext-AD/graphwise-styleguide.git'
                     sh "git push --set-upstream origin ${params.GIT_BRANCH}"
                     sh 'git push --tags'
                 }
