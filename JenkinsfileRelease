@@ -52,9 +52,8 @@ pipeline {
         stage ('Prepare & Publish') {
             steps {
                 script {
-                    withNode(image: NODE_IMAGE) {
                     git_cmd.checkout(branch: params.GIT_BRANCH)
-
+                    withNode(image: NODE_IMAGE) {
                         npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
 
                         withKsm(application: [
@@ -67,7 +66,7 @@ pipeline {
                         ]) {
                             sh "echo //registry.npmjs.org/:_authToken=\${NPM_TOKEN} > .npmrc"
                             sh "npm whoami || echo 'whoami failed'"
-                            sh "npm publish"
+//                            sh "npm publish"
                         }
                     }
                 }
