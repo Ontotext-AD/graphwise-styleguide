@@ -1,4 +1,4 @@
-@Library('ontotext-platform@v0.1.51') _
+@Library('ontotext-platform@v0.1.56') _
 
 def performCleanup = {
     dir("${env.WORKSPACE}") {
@@ -12,7 +12,7 @@ pipeline {
     }
 
     environment {
-        NODE_IMAGE = 'node:22.17.1-bullseye'
+        NODE_IMAGE = 'node:22.17.1-alpine3.22'
     }
 
     parameters {
@@ -50,35 +50,23 @@ pipeline {
 
     stages {
         stage ('Prepare & Publish') {
-            agent {
-                docker {
-                    image "${env.NODE_IMAGE}"
-                    label 'aws-small'
-                    reuseNode true
-                    args '--entrypoint=""'
-                }
-            }
             steps {
                 script {
-                    withNode {
-                      git_cmd.checkout(branch: params.GIT_BRANCH)
-                      npm.changeVersion(version: params.RELEASE_VERSION)
+                    withNode(image: NODE_IMAGE) {
+                        npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
 
-                      sh 'npm install'
-                      sh 'npm run build'
-
-                      withKsm(application: [
-                          [
-                              credentialsId: 'ksm-jenkins',
-                              secrets: [
-                                  [destination: 'env', envVar: 'NPM_TOKEN', filePath: '', notation: 'keeper://FcbEgbi287PN2yx_3uCz4Q/field/note'],
-                              ]
-                          ]
-                      ]) {
-                          sh "echo //registry.npmjs.org/:_authToken=\${NPM_TOKEN} > .npmrc"
-                          sh "npm whoami || echo 'whoami failed'"
-                          sh "npm run publish"
-                      }
+                        withKsm(application: [
+                            [
+                                credentialsId: 'ksm-jenkins',
+                                secrets: [
+                                    [destination: 'env', envVar: 'NPM_TOKEN', filePath: '', notation: 'keeper://FcbEgbi287PN2yx_3uCz4Q/field/note'],
+                                ]
+                            ]
+                        ]) {
+                            sh "echo //registry.npmjs.org/:_authToken=\${NPM_TOKEN} > .npmrc"
+                            sh "npm whoami || echo 'whoami failed'"
+                            sh "npm run publish"
+                        }
                     }
                 }
             }
@@ -115,7 +103,7 @@ pipeline {
 
                 if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
                     try {
-                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'good', message:"Released ontotext-yasgui v${params.RELEASE_VERSION}")
+                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'good', message:":graphwise: :party-blob: :graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}")
                     } catch (e) {
                         echo "Slack notification failed: ${e.getMessage()}"
                     }
