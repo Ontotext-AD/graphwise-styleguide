@@ -6,8 +6,17 @@ const GENERATED_DIR = process.env.GENERATED_DIR || "generated";
 const PREV_SITE_DIR = process.env.PREV_SITE_DIR || "gh-pages-prev";
 const OUT_DIR = process.env.OUT_DIR || "pages-site";
 
-if (!VERSION) {
-  console.error("VERSION env var is required");
+// Restricts VERSION to a safe charset (digits, dots, alphanumeric prerelease suffix) so it
+// can't contain path separators/".." (path traversal into OUT_DIR) or HTML-meaningful
+// characters (markup injection into the published pages).
+const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?$/;
+// Same shape, prefixed with the "v" used for version snapshot directory names.
+const VERSION_DIR_PATTERN = /^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?$/;
+
+if (!VERSION || !VERSION_PATTERN.test(VERSION)) {
+  console.error(
+    `VERSION env var must be a semantic version like "1.2.3" or "1.2.3-test", got: ${JSON.stringify(VERSION)}`
+  );
   process.exit(1);
 }
 
@@ -22,7 +31,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 // Carry forward previously published version snapshots.
 if (fs.existsSync(PREV_SITE_DIR)) {
   for (const entry of fs.readdirSync(PREV_SITE_DIR)) {
-    if (/^v/.test(entry) && fs.statSync(path.join(PREV_SITE_DIR, entry)).isDirectory()) {
+    if (VERSION_DIR_PATTERN.test(entry) && fs.statSync(path.join(PREV_SITE_DIR, entry)).isDirectory()) {
       fs.cpSync(path.join(PREV_SITE_DIR, entry), path.join(OUT_DIR, entry), { recursive: true });
     }
   }
@@ -62,7 +71,7 @@ function landingHtml(version, isLatest) {
 function rootIndexHtml(version) {
   const versionDirs = fs
     .readdirSync(OUT_DIR)
-    .filter((entry) => /^v/.test(entry) && fs.statSync(path.join(OUT_DIR, entry)).isDirectory())
+    .filter((entry) => VERSION_DIR_PATTERN.test(entry) && fs.statSync(path.join(OUT_DIR, entry)).isDirectory())
     .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }));
 
   const links = PAGES.map(
