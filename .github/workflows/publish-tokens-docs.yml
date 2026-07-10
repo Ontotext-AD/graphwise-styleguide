@@ -79,12 +79,16 @@ jobs:
 
           if git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
             git fetch origin gh-pages
-            git worktree add gh-pages-branch origin/gh-pages
+            git worktree add -B gh-pages gh-pages-branch origin/gh-pages
           else
             git worktree add --orphan -b gh-pages gh-pages-branch
           fi
 
-          rsync -a --delete pages-site/ gh-pages-branch/
+          # Replace everything except the .git gitfile pointer that links the
+          # worktree to the main repo (rsync's size+mtime quick check can skip
+          # changed files, so plain remove-and-copy is used instead).
+          find gh-pages-branch -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r pages-site/. gh-pages-branch/
 
           cd gh-pages-branch
           git add -A
