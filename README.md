@@ -40,10 +40,16 @@ npm install graphwise-styleguide
 Tokens file is big and hard to read in raw json format. To make it easier to browse and understand the tokens, you can
 run the following command
 ```bash
-npm run generate-tokens-html
+npm run generate
 ```
-This will generate a `tokens-browser.html` file in the root directory of the repository. Open this file in your browser
-to view the tokens in a more user-friendly format.
+This will generate `generated/tokens-browser.html` and `generated/css-variables-diff.html`. Open either file in your
+browser to view the tokens (or the CSS variables diff report) in a more user-friendly format.
+
+A version of this tokens browser is also published automatically to GitHub Pages on every release:
+**https://ontotext-ad.github.io/graphwise-styleguide/**
+
+The published site keeps a snapshot per released version under `/vX.Y.Z/`, with the latest version always available at
+the root.
 
 ## Optimize Styleguide
 Graphwise Styleguide provides executable script `gw-purge-css`, which can be used to purge unused variables and generate
