@@ -56,12 +56,13 @@ jobs:
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Checkout previous gh-pages (history)
-        uses: actions/checkout@v4
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages-prev
+      - name: Fetch previous gh-pages content
+        run: |
+          mkdir -p gh-pages-prev
+          if git ls-remote --exit-code --heads origin gh-pages > /dev/null 2>&1; then
+            git fetch origin gh-pages
+            git archive origin/gh-pages | tar -x -C gh-pages-prev
+          fi
 
       - name: Assemble Pages site
         env:
