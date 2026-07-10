@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build stylesheets
+        run: npm run build
+
       - name: Generate token docs
         run: npm run generate
 
