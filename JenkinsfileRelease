@@ -75,6 +75,11 @@ pipeline {
     }
 
     post {
+        always {
+            script {
+              currentBuild.displayName = "${params.RELEASE_VERSION ?: curr entBuild.displayName}"
+            }
+        }
         success {
             script {
                 performCleanup()
