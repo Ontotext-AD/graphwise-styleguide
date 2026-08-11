@@ -77,7 +77,7 @@ pipeline {
     post {
         always {
             script {
-              currentBuild.displayName = "${params.RELEASE_VERSION ?: curr entBuild.displayName}"
+                currentBuild.displayName = "${params.RELEASE_VERSION ?: currentBuild.displayName}"
             }
         }
         success {
