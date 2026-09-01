@@ -2,6 +2,8 @@ import StyleDictionary from 'style-dictionary';
 import { register, expandTypesMap } from '@tokens-studio/sd-transforms';
 import fs from 'fs';
 import path from 'path';
+import { registerCustomTransforms } from './transforms.js';
+import { registerCustomPreprocessors } from './preprocessors.js';
 
 const TOKENS_FILEPATH = 'tokens/tokens.json';
 
@@ -10,6 +12,13 @@ const TOKENS_FILEPATH = 'tokens/tokens.json';
 register(StyleDictionary, {
   excludeParentKeys: true,
 });
+
+// Registers our custom transforms and returns the 'tokens-studio' transform list with
+// the built-ins we had to fix swapped out. See src/transforms.js.
+const cssTransforms = registerCustomTransforms(StyleDictionary);
+
+// Registers our custom preprocessors and returns their names. See src/preprocessors.js.
+const customPreprocessors = registerCustomPreprocessors(StyleDictionary);
 
 const filesConfig = {
     format: 'css/variables',
@@ -28,7 +37,7 @@ const filesConfig = {
 // Define the configuration using the Config type from style-dictionary
 const configuration = {
   source: [],
-  preprocessors: ['tokens-studio'],
+  preprocessors: ['tokens-studio', ...customPreprocessors],
   expand: {
     typesMap: expandTypesMap,
   },
@@ -45,10 +54,9 @@ const configuration = {
       prefix: 'gw',
       // The 'tokens-studio' transformGroup applies a comprehensive set of transforms.
       // It's a great starting point provided by the sd-transforms package.
-      transformGroup: 'tokens-studio',
-      // You can still add or override specific transforms if needed.
-      // For example, if you wanted a different naming convention.
-      transforms: ['name/kebab'],
+      // We list its transforms explicitly (see cssTransforms above) so the broken
+      // built-in `size/rem` can be replaced, and append 'name/kebab' for naming.
+      transforms: [...cssTransforms, 'name/kebab'],
       files: [],
     },
   },
