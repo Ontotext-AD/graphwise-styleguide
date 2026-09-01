@@ -44,8 +44,8 @@
     "stylelint-scss": "^6.12.1"
   },
   "dependencies": {
-    "@tokens-studio/sd-transforms": "^2.0.2",
+    "@tokens-studio/sd-transforms": "^2.0.3",
     "glob": "^13.0.6",
-    "style-dictionary": "^5.0.4"
+    "style-dictionary": "^5.5.2"
   }
 }
