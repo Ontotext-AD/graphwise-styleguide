@@ -44,7 +44,8 @@ const configuration = {
   // You can enable more detailed error logging if needed
   log: {
     errors: {
-      brokenReferences: 'console',
+      // Fail the build on references to missing tokens instead of generating CSS with broken variables.
+      brokenReferences: 'throw',
     },
     verbosity: 'verbose',
   },
@@ -142,4 +143,7 @@ async function main() {
 }
 
 // Execute the build process.
-main().catch((error) => console.error('########## Error during build:', error));
+main().catch((error) => {
+  console.error('########## Error during build:', error);
+  process.exit(1);
+});
