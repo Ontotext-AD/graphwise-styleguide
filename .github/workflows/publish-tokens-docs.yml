@@ -41,9 +41,6 @@ jobs:
       - name: Build stylesheets
         run: npm run build
 
-      - name: Generate token docs
-        run: npm run generate
-
       - name: Resolve version
         id: version
         run: |
@@ -55,6 +52,16 @@ jobs:
             VERSION=$(node -p "require('./package.json').version")
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Generate token docs
+        run: |
+          # On a release tag the version is already published, so compare against the release before it.
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            npm run compare-css-variables -- --before "${GITHUB_REF_NAME#v}"
+          else
+            npm run compare-css-variables
+          fi
+          npm run generate-tokens-html
 
       - name: Fetch previous gh-pages content
         run: |

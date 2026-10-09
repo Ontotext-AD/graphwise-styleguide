@@ -19,18 +19,62 @@ const props = Object.fromEntries(
 );
 
 const packageName = props.npmPackage;
-const packageVersion = props.npmVersion;
 const localDistDir = path.join(process.cwd(), props.localDistDir || "dist");
 const outputDir = path.join(process.cwd(), props.cssVariableComparisonOutputDir || "output");
 
-if (!packageName || !packageVersion) {
-  console.error("❌ Missing npmPackage or npmVersion in config.properties.");
+if (!packageName) {
+  console.error("❌ Missing npmPackage in config.properties.");
   process.exit(1);
 }
 
 // --- Read local version from package.json -------------------------------------
 const pkgJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"));
 const localVersion = pkgJson.version || "local";
+
+// --- Resolve the baseline version to compare against --------------------------
+// Usage:
+//   --baseline <version>  compare against this exact published version
+//   --before <version>    compare against the latest published release lower than <version>
+//                         (used by the release docs workflow, where <version> is the one being released)
+//   (no args)             compare against the latest published release not newer than package.json,
+//                         i.e. the current working copy against what is already released
+function getArg(name) {
+  const index = process.argv.indexOf(`--${name}`);
+  return index !== -1 ? process.argv[index + 1] : undefined;
+}
+
+const STABLE_VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
+
+function compareVersions(a, b) {
+  const pa = a.split(".").map(Number);
+  const pb = b.split(".").map(Number);
+  for (let i = 0; i < 3; i++) {
+    if (pa[i] !== pb[i]) return pa[i] - pb[i];
+  }
+  return 0;
+}
+
+function resolveBaselineVersion() {
+  const explicit = getArg("baseline");
+  if (explicit) return explicit;
+
+  const before = getArg("before");
+  const published = JSON.parse(execSync(`npm view ${packageName} versions --json`, { encoding: "utf8" }))
+    .filter((v) => STABLE_VERSION_PATTERN.test(v))
+    .sort(compareVersions);
+
+  const candidates = before
+    ? published.filter((v) => compareVersions(v, before) < 0)
+    : published.filter((v) => !STABLE_VERSION_PATTERN.test(localVersion) || compareVersions(v, localVersion) <= 0);
+
+  if (!candidates.length) {
+    console.error(`❌ No published ${packageName} release found to compare against.`);
+    process.exit(1);
+  }
+  return candidates[candidates.length - 1];
+}
+
+const packageVersion = resolveBaselineVersion();
 
 // --- Download and extract old package -----------------------------------------
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "token-compare-"));
@@ -67,6 +111,35 @@ function parseCssVariables(content) {
   return result;
 }
 
+// --- Helper: detect renamed variables -----------------------------------------
+// CSS variables carry no stable identity, so a rename shows up as one removed and one added
+// variable. We treat a removed/added pair as a rename when their names differ in exactly one
+// dash-separated segment (e.g. --gw-toast-warn-shadow-blur → --gw-toast-warning-shadow-blur)
+// and the match is unambiguous in both directions. Anything else stays Removed/Added.
+function differsInOneSegment(a, b) {
+  const sa = a.split("-");
+  const sb = b.split("-");
+  let start = 0;
+  while (start < sa.length && start < sb.length && sa[start] === sb[start]) start++;
+  let end = 0;
+  while (end < sa.length - start && end < sb.length - start && sa[sa.length - 1 - end] === sb[sb.length - 1 - end]) end++;
+  return sa.length - start - end === 1 && sb.length - start - end === 1;
+}
+
+function detectRenames(removed, added) {
+  const candidates = new Map(removed.map((name) => [name, added.filter((n) => differsInOneSegment(name, n))]));
+  const timesMatched = new Map();
+  candidates.forEach((list) => list.forEach((n) => timesMatched.set(n, (timesMatched.get(n) || 0) + 1)));
+
+  const renames = new Map();
+  candidates.forEach((list, name) => {
+    if (list.length === 1 && timesMatched.get(list[0]) === 1) {
+      renames.set(name, list[0]);
+    }
+  });
+  return renames;
+}
+
 // --- Collect theme files ------------------------------------------------------
 const localFiles = fs.readdirSync(localDistDir).filter(f => f.startsWith("variables-") && f.endsWith(".css"));
 const oldFiles = fs.readdirSync(oldDistDir).filter(f => f.startsWith("variables-") && f.endsWith(".css"));
@@ -93,12 +166,44 @@ for (const file of allThemes) {
     const oldVars = parseCssVariables(fs.readFileSync(oldPath, "utf8"));
 
     Object.entries(oldVars).forEach(([name, oldValue]) => {
-      if (!(name in localVars)) {
-        tableRows.push({ theme: file, variable: name, status: "Removed", oldValue, newValue: "" });
-      } else if (localVars[name] !== oldValue) {
+      if (name in localVars && localVars[name] !== oldValue) {
         tableRows.push({ theme: file, variable: name, status: "Changed", oldValue, newValue: localVars[name] });
       }
     });
+
+    const removed = Object.keys(oldVars).filter((name) => !(name in localVars));
+    const added = Object.keys(localVars).filter((name) => !(name in oldVars));
+    const renames = detectRenames(removed, added);
+    const renamedTo = new Set(renames.values());
+
+    removed.forEach((name) => {
+      if (renames.has(name)) {
+        const newName = renames.get(name);
+        tableRows.push({
+          theme: file,
+          variable: name,
+          newVariable: newName,
+          status: "Renamed",
+          oldValue: oldVars[name],
+          newValue: localVars[newName],
+        });
+      } else {
+        tableRows.push({ theme: file, variable: name, status: "Removed", oldValue: oldVars[name], newValue: "" });
+      }
+    });
+    added
+      .filter((name) => !renamedTo.has(name))
+      .forEach((name) => {
+        tableRows.push({ theme: file, variable: name, status: "Added", oldValue: "", newValue: localVars[name] });
+      });
+    continue;
+  }
+
+  if (fs.existsSync(localPath)) {
+    const localVars = parseCssVariables(fs.readFileSync(localPath, "utf8"));
+    for (const [name, newValue] of Object.entries(localVars)) {
+      tableRows.push({ theme: file, variable: name, status: "Added", oldValue: "", newValue });
+    }
   }
 }
 
@@ -143,6 +248,10 @@ th { background: #f4f4f4; position: sticky; top: 0; z-index: 5; }
 tr:nth-child(even) { background: #f9f9f9; }
 .Removed { color: #d32f2f; font-weight: 600; }
 .Changed { color: #f57c00; font-weight: 600; }
+.Added { color: #2e7d32; font-weight: 600; }
+.Renamed { color: #1565c0; font-weight: 600; }
+.renamed-to { margin-top: 0.2rem; color: #1565c0; }
+.name-label { display: inline-block; width: 2.5rem; color: #888; font-size: 0.85rem; }
 #countInfo { margin-top: 0.75rem; font-weight: 500; color: #555; }
 </style>
 </head>
@@ -171,6 +280,8 @@ tr:nth-child(even) { background: #f9f9f9; }
     <select id="statusFilter">
       <option value="">All statuses</option>
       <option value="Removed">Removed</option>
+      <option value="Added">Added</option>
+      <option value="Renamed">Renamed</option>
       <option value="Changed">Changed</option>
     </select>
   </div>
@@ -192,7 +303,7 @@ tr:nth-child(even) { background: #f9f9f9; }
     ${tableRows.map(row => `
       <tr>
         <td>${row.theme}</td>
-        <td>${row.variable}</td>
+        <td>${row.newVariable ? `<div><span class="name-label">old:</span> ${row.variable}</div><div class="renamed-to"><span class="name-label">new:</span> ${row.newVariable}</div>` : row.variable}</td>
         <td class="${row.status}">${row.status}</td>
         <td>${row.oldValue}</td>
         <td>${row.newValue}</td>
