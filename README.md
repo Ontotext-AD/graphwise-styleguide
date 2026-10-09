@@ -102,11 +102,16 @@ A UI developer:
 
 ### 4. Transfer changes to the `master` branch
 A UI developer:
-- creates a branch from the `gw-theme` branch
-- increases the package version following semantic versioning
-- Rebases the newly created branch onto master. Uses interactive rebase and drops all irrelevant commits. Rebases only the latest, relevant commit/s. Squashes if they are more than one.
-- creates a merge request against `master` branch
-- the merge request is reviewed and merged
+- runs `npm run sync-tokens`. The script creates a `sync-tokens-<date>` branch from `origin/master` and applies, one by one,
+  all `gw-theme` commits that changed `tokens/tokens.json` since the last sync (only their `tokens/tokens.json` changes,
+  with the original author, date and message). Each commit gets a `Gw-Theme-Commit: <sha>` trailer, which is how the
+  next run knows which `gw-theme` commits are already in `master`.
+  - On a conflict the script stops and prints what to do; after resolving it, run `npm run sync-tokens -- --continue`.
+  - `--from <sha>` overrides the detected last synced `gw-theme` commit.
+- builds and checks the result (`npm run build`, `npm run compare-css-variables`)
+- pushes the branch and creates a pull request against `master`, e.g. "DD.MM.YYYY Update tokens"
+- the pull request is reviewed and merged with **Squash and merge**, keeping the commit messages in the squash commit
+  (they contain the `Gw-Theme-Commit` trailers)
 
 ### 5. Publish New Package Version
 A UI developer:
