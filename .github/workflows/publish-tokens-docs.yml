@@ -55,9 +55,12 @@ jobs:
 
       - name: Generate token docs
         run: |
-          # On a release tag the version is already published, so compare against the release before it.
-          if [ "${{ github.ref_type }}" = "tag" ]; then
-            npm run compare-css-variables -- --before "${GITHUB_REF_NAME#v}"
+          # The published version may already be on npm (release tag or a manual re-publish),
+          # so compare against the release before it. Non-release labels (e.g. 0.0.1-test)
+          # fall back to the latest release not newer than package.json.
+          VERSION="${{ steps.version.outputs.version }}"
+          if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            npm run compare-css-variables -- --before "$VERSION"
           else
             npm run compare-css-variables
           fi
