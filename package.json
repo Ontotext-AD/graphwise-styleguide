@@ -8,6 +8,7 @@
     "build:tokens": "node src/index.js",
     "build:gw-purge-css": "node src/build-gw-purge-css.js",
     "compare-css-variables": "node src/compare-css-variables.js",
+    "sync-tokens": "node src/sync-tokens.js",
     "lint": "eslint --ext js,mjs,cjs",
     "lint:fix": "eslint --fix --ext js,mjs,cjs",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
