@@ -49,13 +49,53 @@ pipeline {
     }
 
     stages {
-        stage ('Prepare & Publish') {
+        stage ('Prepare') {
             steps {
                 script {
                     git_cmd.checkout(branch: params.GIT_BRANCH)
                     withNode(image: NODE_IMAGE) {
                         npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
+                    }
+                }
+            }
+        }
 
+        // The release commit and tag are pushed before publishing to npm: a published npm version cannot be
+        // replaced, so if the push fails (e.g. the branch moved meanwhile) nothing must be published yet.
+        // If the publish fails after a successful push, it can be retried from the pushed tag.
+        stage ('Commit & Tag') {
+            steps {
+                script {
+                    sh "git commit -a -m 'Release ${params.RELEASE_VERSION}'"
+                    sh "git tag -a v${params.RELEASE_VERSION} -m 'Release v${params.RELEASE_VERSION}'"
+
+                    withKsm(application: [
+                        [
+                            credentialsId: 'ksm-jenkins',
+                            secrets: [
+                                [destination: 'env', envVar: 'GIT_USER', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/login'],
+                                [destination: 'env', envVar: 'GIT_TOKEN', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/password']
+                            ]
+                        ]
+                    ]) {
+                        sh 'mkdir -p ~/.ssh'
+                        sh 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
+
+                        sh 'git config --global user.name "$GIT_USER"'
+                        sh 'git config --global user.email "$GIT_USER@users.noreply.github.com"'
+
+                        sh 'git remote set-url origin git@github.com:Ontotext-AD/graphwise-styleguide.git'
+                        // --atomic: either both the branch and the tag are pushed, or neither.
+                        sh "git push --atomic --set-upstream origin ${params.GIT_BRANCH} v${params.RELEASE_VERSION}"
+                    }
+                }
+            }
+        }
+
+        stage ('Publish') {
+            steps {
+                script {
+                    withNode(image: NODE_IMAGE) {
                         withKsm(application: [
                             [
                                 credentialsId: 'ksm-jenkins',
@@ -83,29 +123,6 @@ pipeline {
         success {
             script {
                 performCleanup()
-
-                sh "git commit -a -m 'Release ${params.RELEASE_VERSION}'"
-                sh "git tag -a v${params.RELEASE_VERSION} -m 'Release v${params.RELEASE_VERSION}'"
-
-                withKsm(application: [
-                    [
-                        credentialsId: 'ksm-jenkins',
-                        secrets: [
-                            [destination: 'env', envVar: 'GIT_USER', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/login'],
-                            [destination: 'env', envVar: 'GIT_TOKEN', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/password']
-                        ]
-                    ]
-                ]) {
-                    sh 'mkdir -p ~/.ssh'
-                    sh 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
-
-                    sh 'git config --global user.name "$GIT_USER"'
-                    sh 'git config --global user.email "$GIT_USER@users.noreply.github.com"'
-
-                    sh 'git remote set-url origin git@github.com:Ontotext-AD/graphwise-styleguide.git'
-                    sh "git push --set-upstream origin ${params.GIT_BRANCH}"
-                    sh 'git push --tags'
-                }
 
                 if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
                     try {
