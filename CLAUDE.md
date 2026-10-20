@@ -30,7 +30,9 @@ to npm as `graphwise-styleguide`. The process from Figma to release is in README
 
 ## Release
 
-- Releases run in Jenkins (`JenkinsfileRelease`): version, build, commit `Release X.Y.Z`, tag `vX.Y.Z`, push, npm publish.
+- Releases run in Jenkins (`JenkinsfileRelease`): version, build, commit `Release X.Y.Z`, tag `vX.Y.Z`, push, npm publish,
+  then the GitHub release (`src/create-github-release.js`, notes from `generated/css-variables-diff.md` and the token
+  sync commit messages). Test it only with `--dry-run`: without it the script creates a real release.
 - A `v*.*.*` tag triggers `.github/workflows/publish-tokens-docs.yml`, which publishes the tokens browser and the CSS
   variables diff against the previous release to GitHub Pages, keeping a snapshot per version.
 
