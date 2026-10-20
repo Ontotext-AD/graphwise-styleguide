@@ -347,7 +347,86 @@ statusFilter.addEventListener("change", filterTable);
 </html>
 `;
 
-// --- Write file ---------------------------------------------------------------
+// --- Generate Markdown summary ------------------------------------------------
+// Used as the CSS variables section of the GitHub release notes (src/create-github-release.js).
+// Rows are grouped by variable, with a column per theme. The added and changed lists come after
+// the DETAILS_MARKER, so the release script can drop them when the notes get too long.
+const DETAILS_MARKER = "<!-- details -->";
+const themeName = (file) => file.replace(/^variables-/, "").replace(/\.css$/, "");
+const themes = allThemes.map(themeName).sort((a, b) => (a === "light" ? -1 : b === "light" ? 1 : a.localeCompare(b)));
+const code = (value) => (value ? `\`${value}\`` : "–");
+
+function groupByVariable(status) {
+  const groups = new Map();
+  tableRows
+    .filter((row) => row.status === status)
+    .forEach((row) => {
+      const key = row.newVariable ? `${row.variable} ${row.newVariable}` : row.variable;
+      if (!groups.has(key)) groups.set(key, { variable: row.variable, newVariable: row.newVariable, themes: {} });
+      groups.get(key).themes[themeName(row.theme)] = row;
+    });
+  return [...groups.values()].sort((a, b) => a.variable.localeCompare(b.variable));
+}
+
+const groups = Object.fromEntries(["Removed", "Renamed", "Added", "Changed"].map((s) => [s, groupByVariable(s)]));
+const themeColumns = (cell) => (group) => themes.map((theme) => (group.themes[theme] ? cell(group.themes[theme]) : "–"));
+
+function table(header, rows) {
+  return [
+    `| ${header.join(" | ")} |`,
+    `|${header.map(() => "---").join("|")}|`,
+    ...rows.map((cells) => `| ${cells.join(" | ")} |`),
+  ].join("\n");
+}
+
+function details(summary, content) {
+  return `<details>\n<summary>${summary}</summary>\n\n${content}\n\n</details>`;
+}
+
+const markdown = [`Compared with \`${packageName}@${packageVersion}\`.`];
+if (!tableRows.length) {
+  markdown.push("No CSS variables changed.");
+} else {
+  markdown.push(table(["Removed", "Renamed", "Added", "Changed"], [Object.values(groups).map((g) => g.length)]));
+
+  const themeList = (group) => themes.filter((theme) => group.themes[theme]).join(", ");
+  const breaking = [
+    ...groups.Removed.map((g) => [code(g.variable), "removed", themeList(g)]),
+    ...groups.Renamed.map((g) => [code(g.variable), `renamed to ${code(g.newVariable)}`, themeList(g)]),
+  ];
+  if (breaking.length) {
+    markdown.push(
+      "**⚠️ Removed and renamed variables.** Applications that use them must be updated.",
+      table(["Variable", "Change", "Themes"], breaking)
+    );
+  }
+
+  markdown.push(DETAILS_MARKER);
+  if (groups.Added.length) {
+    const cells = themeColumns((row) => code(row.newValue));
+    markdown.push(
+      details(
+        `Added (${groups.Added.length})`,
+        table(["Variable", ...themes], groups.Added.map((g) => [code(g.variable), ...cells(g)]))
+      )
+    );
+  }
+  if (groups.Changed.length) {
+    const cells = themeColumns((row) => `${code(row.oldValue)} → ${code(row.newValue)}`);
+    markdown.push(
+      details(
+        `Changed (${groups.Changed.length})`,
+        table(["Variable", ...themes], groups.Changed.map((g) => [code(g.variable), ...cells(g)]))
+      )
+    );
+  }
+}
+
+// --- Write files --------------------------------------------------------------
 const htmlFile = path.join(outputDir, "css-variables-diff.html");
 fs.writeFileSync(htmlFile, htmlContent, "utf8");
 console.log(`✅ HTML diff report generated: ${htmlFile}`);
+
+const markdownFile = path.join(outputDir, "css-variables-diff.md");
+fs.writeFileSync(markdownFile, markdown.join("\n\n") + "\n", "utf8");
+console.log(`✅ Markdown diff summary generated: ${markdownFile}`);
