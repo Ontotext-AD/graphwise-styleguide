@@ -1,0 +1,1240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CSS Variables Diff Report</title>
+<style>
+body { font-family: system-ui, sans-serif; background: #fafafa; color: #222; margin: 2rem; }
+h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+p { margin: 0.4rem 0; }
+.version-tag {
+  display: inline-block; padding: 0.25rem 0.6rem; border-radius: 0.5rem;
+  font-weight: 600; font-family: monospace;
+}
+.local-version { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.npm-version { background: #fff3e0; color: #ef6c00; border: 1px solid #ffb74d; }
+
+/* Filters layout (non-sticky) */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  max-width: 900px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+.filter-block { flex: 1 1 250px; display: flex; flex-direction: column; min-width: 200px; }
+label { font-size: 0.9rem; font-weight: 600; color: #444; margin-bottom: 0.25rem; }
+input, select { padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; box-shadow: 0 0 8px rgba(0,0,0,0.05); }
+th, td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; text-align: left; font-size: 0.95rem; }
+th { background: #f4f4f4; position: sticky; top: 0; z-index: 5; }
+tr:nth-child(even) { background: #f9f9f9; }
+.Removed { color: #d32f2f; font-weight: 600; }
+.Changed { color: #f57c00; font-weight: 600; }
+.Added { color: #2e7d32; font-weight: 600; }
+.Renamed { color: #1565c0; font-weight: 600; }
+.renamed-to { margin-top: 0.2rem; color: #1565c0; }
+.name-label { display: inline-block; width: 2.5rem; color: #888; font-size: 0.85rem; }
+#countInfo { margin-top: 0.75rem; font-weight: 500; color: #555; }
+</style>
+</head>
+<body>
+<h1>🎨 CSS Variables Diff Report</h1>
+<p><strong>Generated:</strong> 10/20/2026, 12:46:35 PM</p>
+<p><strong>Comparison between:</strong> 
+  <span class="version-tag local-version">graphwise-styleguide@1.3.2 (local)</span> and 
+  <span class="version-tag npm-version">graphwise-styleguide@1.3.1 (npm)</span>
+</p>
+
+<div class="controls">
+  <div class="filter-block">
+    <label for="themeFilter">Theme File</label>
+    <select id="themeFilter">
+      <option value="">All themes</option>
+      <option value="variables-dark.css">variables-dark.css</option><option value="variables-light.css">variables-light.css</option>
+    </select>
+  </div>
+  <div class="filter-block">
+    <label for="searchInput">CSS Variable</label>
+    <input type="text" id="searchInput" placeholder="🔍 Search variable name..." />
+  </div>
+  <div class="filter-block">
+    <label for="statusFilter">Status</label>
+    <select id="statusFilter">
+      <option value="">All statuses</option>
+      <option value="Removed">Removed</option>
+      <option value="Added">Added</option>
+      <option value="Renamed">Renamed</option>
+      <option value="Changed">Changed</option>
+    </select>
+  </div>
+</div>
+
+<p id="countInfo">Total: 139</p>
+
+<table id="diffTable">
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>CSS Variable</th>
+      <th>Status</th>
+      <th>Old Value</th>
+      <th>New Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-color-grey-500</td>
+        <td class="Changed">Changed</td>
+        <td>#6b7280</td>
+        <td>#768093</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-color-grey-600</td>
+        <td class="Changed">Changed</td>
+        <td>#4f5a69</td>
+        <td>#555f6d</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-color-grey-700</td>
+        <td class="Changed">Changed</td>
+        <td>#384252</td>
+        <td>#323943</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-color-grey-800</td>
+        <td class="Changed">Changed</td>
+        <td>#121921</td>
+        <td>#14191f</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-color-grey-900</td>
+        <td class="Changed">Changed</td>
+        <td>#05070b</td>
+        <td>#060709</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-dataview-content-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>rgba(0, 0, 0, 0)</td>
+        <td>var(--gw-border-color-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-datatable-header-padding</td>
+        <td class="Changed">Changed</td>
+        <td>0.75rem 1rem</td>
+        <td>0.75rem 0</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-datatable-footer-padding</td>
+        <td class="Changed">Changed</td>
+        <td>0.75rem 1rem</td>
+        <td>0.75rem 0</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-primary-dark</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-800)</td>
+        <td>var(--gw-primary-700)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-background-surface</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-neutral-0)</td>
+        <td>var(--gw-neutral-50)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-form-field-placeholder-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-neutral-500)</td>
+        <td>var(--gw-neutral-400)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-200)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-disabled-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-300)</td>
+        <td>var(--gw-foreground-on-surface-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-secondary-background)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-border-color-focus-ring</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-brand)</td>
+        <td>var(--gw-secondary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-foreground-link-idle</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-form-field-disabled-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-muted-background)</td>
+        <td>var(--gw-background-disabled)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-primary-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-light)</td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-light)</td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-link-icon-color-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-on-surface-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-link-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-highlight-focus-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-radiobutton-checked-focus-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-checkbox-checked-focus-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-avatar-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-border-color-default)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-content-border-radius</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-content-border-radius)</td>
+        <td>var(--gw-border-radius-xs)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-selectbutton-border-radius</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-form-field-border-radius)</td>
+        <td>var(--gw-border-radius-sm)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-outofsync-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-contrast)</td>
+        <td>var(--gw-foreground-on-surface-disabled)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-outofsync-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-border-color-strong)</td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-outofsync-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-outofsync-icon-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-background-page)</td>
+        <td>var(--gw-background-surface)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-body-background)</td>
+        <td>var(--gw-background-surface)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-success-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-success-light)</td>
+        <td>var(--gw-success-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-icon-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-avatar-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-default-color)</td>
+        <td>var(--gw-foreground-on-surface-muted)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-message-help-close-button-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-help-light)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-message-secondary-close-button-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-help-light)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-checked-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-color)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-insync-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-border-color-primary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-snapshot-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-snapshot-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-link-syncing-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-content-checked-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-background)</td>
+        <td>var(--gw-background-elevated)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-checked-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-background)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-togglebutton-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-secondary-color)</td>
+        <td>var(--gw-foreground-on-surface-muted)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-link-text-decoration</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>underline</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-sm-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-sm-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-lg-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-lg-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-link-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-link-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-offset)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-chip-rounded-border-radius</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-border-radius-xl-circle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-foreground-link-focus</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-leader-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-accent)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-status-outofsync-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-status-disconnected-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-status-insync-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-primary-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-status-syncing-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-secondary-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-button-link-focus-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-dark.css</td>
+        <td>--gw-cluster-node-follower-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-color-grey-500</td>
+        <td class="Changed">Changed</td>
+        <td>#6b7280</td>
+        <td>#768093</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-color-grey-600</td>
+        <td class="Changed">Changed</td>
+        <td>#4f5a69</td>
+        <td>#555f6d</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-color-grey-700</td>
+        <td class="Changed">Changed</td>
+        <td>#384252</td>
+        <td>#323943</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-color-grey-800</td>
+        <td class="Changed">Changed</td>
+        <td>#121921</td>
+        <td>#14191f</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-color-grey-900</td>
+        <td class="Changed">Changed</td>
+        <td>#05070b</td>
+        <td>#060709</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-dataview-content-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>rgba(0, 0, 0, 0)</td>
+        <td>var(--gw-border-color-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-datatable-header-padding</td>
+        <td class="Changed">Changed</td>
+        <td>0.75rem 1rem</td>
+        <td>0.75rem 0</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-datatable-footer-padding</td>
+        <td class="Changed">Changed</td>
+        <td>0.75rem 1rem</td>
+        <td>0.75rem 0</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-primary-light</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-500)</td>
+        <td>var(--gw-primary-400)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-on-surface-disabled</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-neutral-400)</td>
+        <td>var(--gw-neutral-500)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-form-field-placeholder-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-neutral-500)</td>
+        <td>var(--gw-neutral-400)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-200)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-disabled-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-300)</td>
+        <td>var(--gw-foreground-on-surface-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-secondary-background)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-border-color-focus-ring</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-brand)</td>
+        <td>var(--gw-secondary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-link-idle</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-link-hover</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-dark)</td>
+        <td>var(--gw-primary-dark)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-link-visited</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-dark)</td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-form-field-disabled-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-muted-background)</td>
+        <td>var(--gw-background-disabled)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-primary-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-light)</td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-light)</td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-link-icon-color-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-on-surface-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-link-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-highlight-focus-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-radiobutton-checked-focus-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-checkbox-checked-focus-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-avatar-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-border-color-default)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-content-border-radius</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-content-border-radius)</td>
+        <td>var(--gw-border-radius-xs)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-selectbutton-border-radius</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-form-field-border-radius)</td>
+        <td>var(--gw-border-radius-sm)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-outofsync-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-contrast)</td>
+        <td>var(--gw-foreground-on-surface-disabled)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-outofsync-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-border-color-strong)</td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-outofsync-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-outofsync-icon-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-background-page)</td>
+        <td>var(--gw-background-surface)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-body-background)</td>
+        <td>var(--gw-background-surface)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-success-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-success-light)</td>
+        <td>var(--gw-success-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-icon-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-avatar-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-default-color)</td>
+        <td>var(--gw-foreground-on-surface-muted)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-message-help-close-button-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-help-light)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-message-secondary-close-button-focus-ring-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-help-light)</td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-checked-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-color)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-insync-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-border-color-primary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-snapshot-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-snapshot-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-link-syncing-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-content-checked-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-background)</td>
+        <td>var(--gw-background-elevated)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-checked-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-primary-background)</td>
+        <td>var(--gw-background-subtle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-togglebutton-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-button-secondary-color)</td>
+        <td>var(--gw-foreground-on-surface-muted)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-link-text-decoration</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>underline</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-sm-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-sm-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-lg-icon-only-padding-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-lg-icon-only-padding-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-5)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-link-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-link-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-offset)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-chip-rounded-border-radius</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-border-radius-xl-circle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-on-surface-read-only</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-neutral-400)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-foreground-link-focus</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-leader-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-accent)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-status-outofsync-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-status-disconnected-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-error-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-status-insync-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-primary-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-status-syncing-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-secondary-base)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-button-link-focus-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr>
+        <td>variables-light.css</td>
+        <td>--gw-cluster-node-follower-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const themeFilter = document.getElementById("themeFilter");
+const statusFilter = document.getElementById("statusFilter");
+const table = document.getElementById("diffTable").getElementsByTagName("tbody")[0];
+const countInfo = document.getElementById("countInfo");
+
+function filterTable() {
+  const query = searchInput.value.toLowerCase();
+  const selectedTheme = themeFilter.value;
+  const selectedStatus = statusFilter.value;
+  let visibleCount = 0;
+
+  for (const row of table.rows) {
+    const theme = row.cells[0].innerText;
+    const variable = row.cells[1].innerText.toLowerCase();
+    const status = row.cells[2].innerText;
+    const match = (!query || variable.includes(query)) &&
+                  (!selectedTheme || theme === selectedTheme) &&
+                  (!selectedStatus || status === selectedStatus);
+    row.style.display = match ? "" : "none";
+    if (match) visibleCount++;
+  }
+
+  countInfo.textContent = "Total: " + visibleCount;
+}
+
+searchInput.addEventListener("input", filterTable);
+themeFilter.addEventListener("change", filterTable);
+statusFilter.addEventListener("change", filterTable);
+</script>
+</body>
+</html>
