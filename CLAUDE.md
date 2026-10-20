@@ -6,7 +6,9 @@ to npm as `graphwise-styleguide`. The process from Figma to release is in README
 ## Tokens
 
 - `tokens/tokens.json` is the designer's Tokens Studio export. It arrives through the `gw-theme` branch and reaches
-  `master` only via `npm run sync-tokens`, which keeps the `Gw-Theme-Commit` trailers that mark what is synced.
+  `master` only via `npm run sync-tokens`, which squashes the sync into one commit with `Gw-Theme-Commit: <sha>` lines
+  that mark what is synced. They are searched for in the whole message, not parsed as git trailers, because GitHub
+  merges may append lines after them.
   Treat it as generated input: fix token problems in the build (`src/transforms.js`, `src/preprocessors.js`).
 - `gw-theme` holds only token commits and is intentionally behind `master` in code; build and test on a branch from
   `master`.

@@ -106,25 +106,30 @@ the application.
 
 ### 3. Transfer the token changes and test
 The `gw-theme` branch contains only the token exports, not the current build scripts, so the changes are tested on a
-branch from `master`. A UI developer:
-- runs `npm run sync-tokens`. The script creates a `sync-tokens-<date>` branch from `origin/master` and applies, one by one,
-  all `gw-theme` commits that changed `tokens/tokens.json` since the last sync (only their `tokens/tokens.json` changes,
-  with the original author, date and message). Each commit gets a `Gw-Theme-Commit: <sha>` trailer, which is how the
-  next run knows which `gw-theme` commits are already in `master`.
-  - On a conflict the script stops and prints what to do; after resolving it, run `npm run sync-tokens -- --continue`.
-  - `--from <sha>` overrides the detected last synced `gw-theme` commit.
-- executes `npm run build` to generate the theme stylesheets. The build fails on invalid tokens or references to
-  missing tokens.
-- reviews the changed CSS variables with `npm run compare-css-variables` (see [Tokens browser](#tokens-browser))
+branch from `master`. A UI developer runs `npm run sync-tokens`. The script:
+1. creates a `sync-tokens-<date>` branch from `origin/master` and applies, one by one, all `gw-theme` commits that
+   changed `tokens/tokens.json` since the last sync (only their `tokens/tokens.json` changes)
+   - On a conflict the script stops and prints what to do; after resolving it, run `npm run sync-tokens -- --continue`.
+   - `--from <sha>` overrides the detected last synced `gw-theme` commit.
+2. squashes them into one `DD.MM.YYYY Update tokens` commit, which lists the `gw-theme` commit messages, has a
+   `Gw-Theme-Commit: <sha>` line for each of them and the `gw-theme` authors as co-authors. The `Gw-Theme-Commit` lines
+   are how the next run knows which `gw-theme` commits are already in `master`, and the messages become the design token
+   changes in the [release notes](#release-notes).
+3. runs `npm run build`, which fails on invalid tokens or references to missing tokens, and
+   `npm run compare-css-variables` (see [Tokens browser](#tokens-browser))
+4. asks whether to push the branch and open the pull request against `master`, with the synced commits and the CSS
+   variables summary in its description. It needs the [GitHub CLI](https://cli.github.com/) (`gh`); without it, or when
+   the answer is no, the script prints the commands to do this later.
+
+Before pushing, or before the pull request is merged, the UI developer:
+- reviews the changed CSS variables in `generated/css-variables-diff.html`
 - links this npm module with the application where the design system is applied by executing `npm link` in this module
   and `npm link path/to/this/module` in the application's module that depends on this one
 - builds and runs the application to verify that all the changes are correct
 
 ### 4. Merge to the `master` branch
-A UI developer:
-- pushes the sync branch and creates a pull request against `master`, e.g. "DD.MM.YYYY Update tokens"
-- the pull request is reviewed and merged with **Squash and merge**, keeping the commit messages in the squash commit
-  (they contain the `Gw-Theme-Commit` trailers)
+The pull request is reviewed and merged with any merge method, keeping the commit message: its `Gw-Theme-Commit` lines
+mark the synced commits.
 
 ### 5. Publish New Package Version
 #### With Jenkins (recommended)
@@ -154,20 +159,15 @@ git push --atomic origin master vX.Y.Z
 npm publish
 ```
 
-In both cases the `vX.Y.Z` tag triggers the GitHub Pages workflow, which publishes the tokens browser and the CSS
-variables diff against the previous release.
-
-### 6. Install Updated Styleguide
-- A UI developer installs the new styleguide version in the respective Graphwise application by updating its 
 Then create the GitHub release from the same working copy, with a token that can create releases in this repository:
 ```bash
 npm run compare-css-variables -- --before X.Y.Z
 GITHUB_TOKEN=$(gh auth token) node src/create-github-release.js --version X.Y.Z
 ```
 
-`package.json`.
+In both cases the `vX.Y.Z` tag triggers the GitHub Pages workflow, which publishes the tokens browser and the CSS
+variables diff against the previous release.
 
-### 7. Optimize Styleguide
 #### Release notes
 `src/create-github-release.js` creates the GitHub release for the tag, or updates it if it already exists. The notes
 contain:
@@ -181,6 +181,11 @@ contain:
 
 To preview the notes without creating the release, add `--dry-run`: they are written to `generated/release-notes.md`.
 
+### 6. Install Updated Styleguide
+- A UI developer installs the new styleguide version in the respective Graphwise application by updating its 
+`package.json`.
+
+### 7. Optimize Styleguide
 The generated stylesheets are large and may contain variables unused in the particular application. To optimize the
 styleguide in case for the GraphDB Workbench application, the UI developer runs `npm run build` in the 
 `packages/styleguide` module. This runs a custom script that purges unused variables from the generated stylesheets 
