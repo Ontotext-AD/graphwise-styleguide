@@ -1,18 +1,26 @@
-// Transfers the design token commits from the gw-theme branch onto a new branch created from master.
+// Transfers the design token commits from the gw-theme branch onto a new branch created from master and opens
+// a pull request with them.
 //
 // Every gw-theme commit that changed tokens/tokens.json since the last sync is applied as a separate
 // commit (only its tokens.json changes, with the original author, date and message) and gets a
-// "Gw-Theme-Commit: <sha>" trailer. The branch is then pushed and merged with a squash merge, which keeps
-// the commit messages, so the trailers end up in master and mark which gw-theme commits are already synced.
+// "Gw-Theme-Commit: <sha>" trailer, so a conflict can be resolved one commit at a time.
+//
+// The applied commits are then squashed into one "DD.MM.YYYY Update tokens" commit, which lists the gw-theme
+// commit messages and keeps all trailers, with the gw-theme authors as co-authors. The script builds the
+// stylesheets and, after a confirmation, pushes the branch and opens the pull request (with the GitHub CLI, if
+// installed). Any merge method keeps that commit message in master, where the trailers mark which gw-theme
+// commits are already synced. They are searched for in the whole commit message, not parsed as git trailers,
+// because GitHub may add a "---------" separator and Co-authored-by lines after them in a squash merge.
 //
 // Usage:
-//   npm run sync-tokens                    create the sync branch and apply the new commits
+//   npm run sync-tokens                    create the sync branch, apply the new commits and open a pull request
 //   npm run sync-tokens -- --continue      continue on the current branch after resolving a conflict
 //   npm run sync-tokens -- --from <sha>    treat <sha> as the last synced gw-theme commit
 //   npm run sync-tokens -- --base <ref>    create the sync branch from <ref> instead of origin/master
 import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline/promises';
 
 const REMOTE = 'origin';
 const SOURCE_BRANCH = 'gw-theme';
@@ -54,10 +62,17 @@ if (git(['status', '--porcelain', '--untracked-files=no'])) {
 
 console.info(`📥 Fetching ${REMOTE}...`);
 git(['fetch', REMOTE, SOURCE_BRANCH, TARGET_BRANCH]);
+const baseCommit = git(['rev-parse', '--verify', `${base}^{commit}`]);
 
 // --- Find the last synced gw-theme commit -------------------------------------
+const TRAILER_PATTERN = new RegExp(`^${TRAILER}: ([0-9a-f]{40})$`, 'gm');
+
+function syncedShasIn(messages) {
+  return [...messages.matchAll(TRAILER_PATTERN)].map((match) => match[1]);
+}
+
 function syncedShas(ref) {
-  return new Set(lines(git(['log', ref, `--format=%(trailers:key=${TRAILER},valueonly)`])));
+  return new Set(syncedShasIn(git(['log', ref, '--format=%B'])));
 }
 
 function findLastSynced() {
@@ -68,7 +83,7 @@ function findLastSynced() {
   const tokenCommits = lines(git(['rev-list', '--no-merges', source, '--', TOKENS_FILE]));
 
   // The trailers left in master (and on the current branch when continuing) by previous syncs.
-  const synced = syncedShas(base);
+  const synced = syncedShas(baseCommit);
   if (isContinue) {
     syncedShas('HEAD').forEach((sha) => synced.add(sha));
   }
@@ -79,7 +94,7 @@ function findLastSynced() {
 
   // No trailers yet (syncs made before this script): use the newest gw-theme commit whose
   // tokens.json is identical to the one in master.
-  const baseBlob = git(['rev-parse', `${base}:${TOKENS_FILE}`]);
+  const baseBlob = git(['rev-parse', `${baseCommit}:${TOKENS_FILE}`]);
   const lastByContent = tokenCommits.find((sha) => git(['rev-parse', `${sha}:${TOKENS_FILE}`]) === baseBlob);
   if (lastByContent) {
     console.info(`ℹ️  No ${TRAILER} trailer found in ${base}, using the gw-theme commit with identical ${TOKENS_FILE}.`);
@@ -93,7 +108,9 @@ const lastSynced = findLastSynced();
 console.info(`🔖 Last synced ${SOURCE_BRANCH} commit: ${git(['log', '-1', '--format=%h %ad %s', '--date=short', lastSynced])}`);
 
 const pending = lines(git(['rev-list', '--reverse', '--no-merges', `${lastSynced}..${source}`, '--', TOKENS_FILE]));
-if (!pending.length) {
+// When continuing, the commits applied before the conflict are already on the branch, so it is finished
+// (squashed, built and pushed) even if nothing is left to apply.
+if (!pending.length && !isContinue) {
   console.info(`✅ ${TARGET_BRANCH} is up to date with ${source}, nothing to sync.`);
   process.exit(0);
 }
@@ -104,7 +121,7 @@ if (!isContinue) {
   if (git(['branch', '--list', branch])) {
     fail(`Branch ${branch} already exists. Delete it, or switch to it and run with --continue.`);
   }
-  git(['switch', '-c', branch, base]);
+  git(['switch', '-c', branch, baseCommit]);
   console.info(`🌿 Created branch ${branch} from ${base}`);
 }
 
@@ -165,32 +182,114 @@ for (const sha of pending) {
   console.info(`✔️  ${shortSha(sha)} ${date.slice(0, 10)} ${subject}`);
 }
 
-// --- Summary ----------------------------------------------------------------------
-// The branch should end up with exactly the tokens of the last applied gw-theme commit. A difference
-// means master had its own token changes, or a change was merged into the wrong place of the file.
-const lastPending = pending[pending.length - 1];
-if (git(['rev-parse', `HEAD:${TOKENS_FILE}`]) !== git(['rev-parse', `${lastPending}:${TOKENS_FILE}`])) {
-  console.warn(`
-⚠️  ${TOKENS_FILE} differs from the one in ${SOURCE_BRANCH} at ${shortSha(lastPending)}. Review the difference before pushing:
-
-     git diff ${shortSha(lastPending)} HEAD -- ${TOKENS_FILE}`);
+// --- Squash ----------------------------------------------------------------------
+// Onto the commit the branch was created from: when continuing, the base may have moved since.
+const forkPoint = git(['merge-base', baseCommit, 'HEAD']);
+const synced = syncedShasIn(git(['log', '--reverse', `${forkPoint}..HEAD`, '--format=%B']));
+if (!synced.length) {
+  fail(`The branch has no synced ${SOURCE_BRANCH} commits.`);
 }
 
-const branch = git(['branch', '--show-current']);
-const synced = lines(git(['log', '--reverse', `${base}..HEAD`, `--format=%(trailers:key=${TRAILER},valueonly)`]));
 const today = new Date();
 const title = `${String(today.getDate()).padStart(2, '0')}.${String(today.getMonth() + 1).padStart(2, '0')}.${today.getFullYear()} Update tokens`;
 
-console.info(`
-✅ Branch ${branch} contains ${synced.length} synced commit(s).
+// Each gw-theme commit message becomes a list item: its first line, followed by the rest indented.
+function listItem(sha) {
+  const [subject, ...body] = git(['log', '-1', '--format=%B', sha]).split('\n');
+  return [`* ${subject}`, ...body.map((line) => (line.trim() ? `  ${line}` : ''))].join('\n').replace(/\n{3,}/g, '\n\n');
+}
 
-Next steps:
-  1. npm run build — and check the result (e.g. npm run compare-css-variables, npm link in the application)
-  2. git push -u ${REMOTE} ${branch}
-  3. Open a pull request against ${TARGET_BRANCH}, e.g. "${title}"
-  4. Merge it with "Squash and merge" and keep the commit messages in the squash commit:
-     the ${TRAILER} trailers mark the synced commits for the next run.
+const me = git(['config', 'user.email']);
+const coAuthors = [...new Set(synced.map((sha) => git(['log', '-1', '--format=%an <%ae>', sha])))].filter(
+  (author) => !author.endsWith(`<${me}>`)
+);
+const squashMessage = [
+  title,
+  synced.map(listItem).join('\n'),
+  [...synced.map((sha) => `${TRAILER}: ${sha}`), ...coAuthors.map((author) => `Co-authored-by: ${author}`)].join('\n'),
+].join('\n\n');
+
+git(['reset', '--soft', forkPoint]);
+git(['commit', '--quiet', '-F', '-'], { input: `${squashMessage}\n` });
+console.info(`🧩 Squashed ${synced.length} commit(s) into "${title}"`);
+
+// --- Build and review -------------------------------------------------------------
+function run(command, args) {
+  execFileSync(command, args, { stdio: 'inherit' });
+}
+
+console.info('🔨 Building the stylesheets...');
+run('npm', ['run', 'build']);
+
+let cssVariables;
+try {
+  run('npm', ['run', 'compare-css-variables']);
+  cssVariables = fs.readFileSync(path.join('generated', 'css-variables-diff.md'), 'utf8').replace('<!-- details -->', '').trim();
+} catch {
+  console.warn('⚠️  The CSS variables comparison failed, the pull request will not include it.');
+}
+
+// The branch should end up with exactly the tokens of the last applied gw-theme commit. A difference
+// means master had its own token changes, or a change was merged into the wrong place of the file.
+const lastApplied = synced[synced.length - 1];
+const tokensDiffer = git(['rev-parse', `HEAD:${TOKENS_FILE}`]) !== git(['rev-parse', `${lastApplied}:${TOKENS_FILE}`]);
+const branch = git(['branch', '--show-current']);
+const commitInfo = (sha) => lines(git(['log', '-1', '--format=%h%n%ad%n%an%n%s', '--date=short', sha]));
+
+console.info(`
+✅ Branch ${branch} is ready: "${title}"
 
 Synced ${SOURCE_BRANCH} commits:
-${synced.map((sha) => `  - ${git(['log', '-1', '--format=%h %ad %s', '--date=short', sha])}`).join('\n')}
-`);
+${synced.map((sha) => `  - ${commitInfo(sha).join(' ')}`).join('\n')}
+${tokensDiffer ? `
+⚠️  ${TOKENS_FILE} differs from the one in ${SOURCE_BRANCH} at ${shortSha(lastApplied)}. Review the difference:
+
+     git diff ${shortSha(lastApplied)} HEAD -- ${TOKENS_FILE}
+` : ''}
+Check the result before pushing: generated/css-variables-diff.html, npm link in the application.`);
+
+// --- Push and open the pull request ----------------------------------------------
+async function confirm(question) {
+  if (!process.stdin.isTTY) {
+    return false;
+  }
+  const prompt = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const answer = await prompt.question(question);
+  prompt.close();
+  return /^y(es)?$/i.test(answer.trim());
+}
+
+const prBody = [
+  `Syncs the token changes from \`${SOURCE_BRANCH}\` with \`npm run sync-tokens\`.`,
+  [
+    `| ${SOURCE_BRANCH} | Date | Author | Commit |`,
+    '|---|---|---|---|',
+    ...synced.map((sha) => {
+      const [short, date, author, subject] = commitInfo(sha);
+      return `| \`${short}\` | ${date} | ${author} | ${subject} |`;
+    }),
+  ].join('\n'),
+  cssVariables && `## CSS variables\n\n${cssVariables}`,
+  `Merge with any method, keeping the commit message: its \`${TRAILER}\` lines mark the synced commits for the next \`npm run sync-tokens\`.`,
+]
+  .filter(Boolean)
+  .join('\n\n');
+const prBodyFile = path.join(gitDir, 'SYNC_TOKENS_PR.md');
+fs.writeFileSync(prBodyFile, `${prBody}\n`);
+
+if (!(await confirm(`\nPush ${branch} and open a pull request against ${TARGET_BRANCH}? [y/N] `))) {
+  console.info(`
+Not pushed. When ready:
+  git push -u ${REMOTE} ${branch}
+  gh pr create --base ${TARGET_BRANCH} --title "${title}" --body-file ${prBodyFile}`);
+  process.exit(0);
+}
+
+run('git', ['push', '-u', REMOTE, branch]);
+try {
+  run('gh', ['pr', 'create', '--base', TARGET_BRANCH, '--head', branch, '--title', title, '--body-file', prBodyFile]);
+} catch {
+  console.warn(`
+⚠️  Could not open the pull request with the GitHub CLI (gh). Open it on GitHub with the title
+   "${title}" and the description from ${prBodyFile}.`);
+}
