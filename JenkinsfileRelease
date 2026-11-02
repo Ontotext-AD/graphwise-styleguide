@@ -55,6 +55,9 @@ pipeline {
                     git_cmd.checkout(branch: params.GIT_BRANCH)
                     withNode(image: NODE_IMAGE) {
                         npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
+                        // The CSS variables summary for the GitHub release notes, generated before anything is
+                        // pushed, so a failure here stops the release while it can still be repeated.
+                        sh "npm run compare-css-variables -- --before ${params.RELEASE_VERSION}"
                     }
                 }
             }
@@ -112,6 +115,30 @@ pipeline {
                 }
             }
         }
+
+        // The package is already published at this point, so a failure here only marks the build unstable.
+        // The release can then be created from the tag: see README.md → Publish New Package Version.
+        stage ('GitHub Release') {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                    script {
+                        withNode(image: NODE_IMAGE) {
+                            withKsm(application: [
+                                [
+                                    credentialsId: 'ksm-jenkins',
+                                    secrets: [
+                                        [destination: 'env', envVar: 'GITHUB_TOKEN', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/password']
+                                    ]
+                                ]
+                            ]) {
+                                sh "node src/create-github-release.js --version ${params.RELEASE_VERSION}"
+                            }
+                        }
+                        env.RELEASE_URL = readFile('generated/release-url.txt').trim()
+                    }
+                }
+            }
+        }
     }
 
     post {
@@ -126,7 +153,26 @@ pipeline {
 
                 if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
                     try {
-                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'good', message:":graphwise: :party-blob: :graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}")
+                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'good', message:":graphwise: :party-blob: :graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}\nRelease notes: ${env.RELEASE_URL}")
+                    } catch (e) {
+                        echo "Slack notification failed: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        // Published to npm, but the GitHub release failed.
+        unstable {
+            wrap([$class: 'BuildUser']) {
+                sendMail(env.BUILD_USER_EMAIL)
+            }
+
+            script {
+                performCleanup()
+
+                if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
+                    try {
+                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'warning', message:":graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}, but the GitHub release failed")
                     } catch (e) {
                         echo "Slack notification failed: ${e.getMessage()}"
                     }
