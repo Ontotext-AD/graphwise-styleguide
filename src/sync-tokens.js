@@ -104,7 +104,9 @@ if (!isContinue) {
   if (git(['branch', '--list', branch])) {
     fail(`Branch ${branch} already exists. Delete it, or switch to it and run with --continue.`);
   }
-  git(['switch', '-c', branch, base]);
+  // --no-track: a branch created from origin/master would otherwise track it, and a plain push
+  // (e.g. from the IDE) would then go straight to master instead of to a new remote branch.
+  git(['switch', '--no-track', '-c', branch, base]);
   console.info(`🌿 Created branch ${branch} from ${base}`);
 }
 
