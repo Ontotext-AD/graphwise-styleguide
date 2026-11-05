@@ -25,7 +25,7 @@
 <body>
   <nav>
     <h1>Design tokens</h1>
-    <ul><li><a href="#spacing">Spacing <span style="color:#888">(407)</span></a></li><li><a href="#borderRadius">BorderRadius <span style="color:#888">(162)</span></a></li><li><a href="#color">Color <span style="color:#888">(2059)</span></a></li><li><a href="#fontFamilies">FontFamilies <span style="color:#888">(5)</span></a></li><li><a href="#fontWeights">FontWeights <span style="color:#888">(44)</span></a></li><li><a href="#dimension">Dimension <span style="color:#888">(8)</span></a></li><li><a href="#fontSizes">FontSizes <span style="color:#888">(57)</span></a></li><li><a href="#sizing">Sizing <span style="color:#888">(196)</span></a></li><li><a href="#opacity">Opacity <span style="color:#888">(3)</span></a></li><li><a href="#other">Other <span style="color:#888">(110)</span></a></li><li><a href="#boxShadow">BoxShadow <span style="color:#888">(138)</span></a></li><li><a href="#borderWidth">BorderWidth <span style="color:#888">(145)</span></a></li><li><a href="#border">Border <span style="color:#888">(289)</span></a></li><li><a href="#typography">Typography <span style="color:#888">(46)</span></a></li><li><a href="#lineHeights">LineHeights <span style="color:#888">(13)</span></a></li><li><a href="#number">Number <span style="color:#888">(2)</span></a></li><li><a href="#textDecoration">TextDecoration <span style="color:#888">(1)</span></a></li></ul>
+    <ul><li><a href="#spacing">Spacing <span style="color:#888">(407)</span></a></li><li><a href="#borderRadius">BorderRadius <span style="color:#888">(162)</span></a></li><li><a href="#color">Color <span style="color:#888">(2060)</span></a></li><li><a href="#fontFamilies">FontFamilies <span style="color:#888">(5)</span></a></li><li><a href="#fontWeights">FontWeights <span style="color:#888">(44)</span></a></li><li><a href="#dimension">Dimension <span style="color:#888">(8)</span></a></li><li><a href="#fontSizes">FontSizes <span style="color:#888">(58)</span></a></li><li><a href="#sizing">Sizing <span style="color:#888">(196)</span></a></li><li><a href="#opacity">Opacity <span style="color:#888">(3)</span></a></li><li><a href="#other">Other <span style="color:#888">(110)</span></a></li><li><a href="#boxShadow">BoxShadow <span style="color:#888">(138)</span></a></li><li><a href="#borderWidth">BorderWidth <span style="color:#888">(145)</span></a></li><li><a href="#border">Border <span style="color:#888">(289)</span></a></li><li><a href="#typography">Typography <span style="color:#888">(47)</span></a></li><li><a href="#lineHeights">LineHeights <span style="color:#888">(13)</span></a></li><li><a href="#number">Number <span style="color:#888">(2)</span></a></li><li><a href="#textDecoration">TextDecoration <span style="color:#888">(1)</span></a></li></ul>
   </nav>
   <main>
     <div id="filter-bar">
@@ -902,6 +902,22 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.padding</td>
+            <td>{space.0,875}</td>
+            <td class="css-var">--gw-accordion-header-padding</td>
+            <td class="">
+              0.875rem
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.content.padding</td>
+            <td>0 {space.0,875} {space.0,875} {space.0,875}</td>
+            <td class="css-var">--gw-accordion-content-padding</td>
+            <td class="">
+              0 0.875rem 0.875rem 0.875rem
+            </td>
+          </tr>
+          <tr>
             <td>dialog.header.padding</td>
             <td>{overlay.modal.padding}</td>
             <td class="css-var">--gw-dialog-header-padding</td>
@@ -1671,10 +1687,10 @@
           </tr>
           <tr>
             <td>togglebutton.padding</td>
-            <td>0.25rem</td>
+            <td>0.125rem 0.25rem</td>
             <td class="css-var">--gw-togglebutton-padding</td>
             <td class="">
-              0.25rem
+              0.125rem 0.25rem
             </td>
           </tr>
           <tr>
@@ -1795,22 +1811,6 @@
             <td class="css-var">--gw-dataview-footer-padding</td>
             <td class="">
               0.75rem 1rem
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.padding</td>
-            <td>{space.0,875}</td>
-            <td class="css-var">--gw-accordion-header-padding</td>
-            <td class="">
-              0.875rem
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.content.padding</td>
-            <td>0 {space.0,875} {space.0,875} {space.0,875}</td>
-            <td class="css-var">--gw-accordion-content-padding</td>
-            <td class="">
-              0 0.875rem 0.875rem 0.875rem
             </td>
           </tr>
           <tr>
@@ -3631,6 +3631,38 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.border.radius</td>
+            <td>0</td>
+            <td class="css-var">--gw-accordion-header-border-radius</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.first.top.border.radius</td>
+            <td>{content.border.radius}</td>
+            <td class="css-var">--gw-accordion-header-first-top-border-radius</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.last.bottom.border.radius</td>
+            <td>{content.border.radius}</td>
+            <td class="css-var">--gw-accordion-header-last-bottom-border-radius</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.last.active.bottom.border.radius</td>
+            <td>0</td>
+            <td class="css-var">--gw-accordion-header-last-active-bottom-border-radius</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
             <td>dialog.border.radius</td>
             <td>{overlay.modal.border.radius}</td>
             <td class="css-var">--gw-dialog-border-radius</td>
@@ -4042,38 +4074,6 @@
             <td>dataview.footer.border.radius</td>
             <td>0</td>
             <td class="css-var">--gw-dataview-footer-border-radius</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.border.radius</td>
-            <td>0</td>
-            <td class="css-var">--gw-accordion-header-border-radius</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.first.top.border.radius</td>
-            <td>{content.border.radius}</td>
-            <td class="css-var">--gw-accordion-header-first-top-border-radius</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.last.bottom.border.radius</td>
-            <td>{content.border.radius}</td>
-            <td class="css-var">--gw-accordion-header-last-bottom-border-radius</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.last.active.bottom.border.radius</td>
-            <td>0</td>
-            <td class="css-var">--gw-accordion-header-last-active-bottom-border-radius</td>
             <td class="">
               0
             </td>
@@ -6641,10 +6641,10 @@
           </tr>
           <tr>
             <td>background.disabled</td>
-            <td>{neutral.200}</td>
+            <td>{neutral.100}</td>
             <td class="css-var">--gw-background-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -6713,10 +6713,10 @@
           </tr>
           <tr>
             <td>foreground.on-surface.muted</td>
-            <td>{neutral.600}</td>
+            <td>{neutral.700}</td>
             <td class="css-var">--gw-foreground-on-surface-muted</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -6737,10 +6737,10 @@
           </tr>
           <tr>
             <td>foreground.on-surface.disabled</td>
-            <td>{neutral.500}</td>
+            <td>{neutral.400}</td>
             <td class="css-var">--gw-foreground-on-surface-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 12%,52%)"></span> hsl(220, 12%,52%)
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -6777,34 +6777,34 @@
           </tr>
           <tr>
             <td>foreground.link.idle</td>
-            <td>{primary.light}</td>
+            <td>{primary.base}</td>
             <td class="css-var">--gw-foreground-link-idle</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
             <td>foreground.link.focus</td>
-            <td>{primary.light}</td>
+            <td>{primary.base}</td>
             <td class="css-var">--gw-foreground-link-focus</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
             <td>foreground.link.hover</td>
-            <td>{primary.dark}</td>
+            <td>{primary.light}</td>
             <td class="css-var">--gw-foreground-link-hover</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
             </td>
           </tr>
           <tr>
             <td>foreground.link.visited</td>
-            <td>{primary.light}</td>
+            <td>{primary.base}</td>
             <td class="css-var">--gw-foreground-link-visited</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -6812,7 +6812,7 @@
             <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-foreground-link-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 12%,52%)"></span> hsl(220, 12%,52%)
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -8561,10 +8561,10 @@
           </tr>
           <tr>
             <td>background.disabled</td>
-            <td>{neutral.200}</td>
+            <td>{neutral.100}</td>
             <td class="css-var">--gw-background-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -8641,10 +8641,18 @@
           </tr>
           <tr>
             <td>foreground.on-surface.muted</td>
-            <td>{neutral.600}</td>
+            <td>{neutral.700}</td>
             <td class="css-var">--gw-foreground-on-surface-muted</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
+            </td>
+          </tr>
+          <tr>
+            <td>foreground.on-surface.read-only</td>
+            <td>{neutral.300}</td>
+            <td class="css-var">--gw-foreground-on-surface-read-only</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
             </td>
           </tr>
           <tr>
@@ -8657,10 +8665,10 @@
           </tr>
           <tr>
             <td>foreground.on-surface.disabled</td>
-            <td>{neutral.400}</td>
+            <td>{neutral.300}</td>
             <td class="css-var">--gw-foreground-on-surface-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
             </td>
           </tr>
           <tr>
@@ -8689,31 +8697,31 @@
           </tr>
           <tr>
             <td>foreground.link.idle</td>
-            <td>{primary.light}</td>
+            <td>{primary.dark}</td>
             <td class="css-var">--gw-foreground-link-idle</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
-            </td>
-          </tr>
-          <tr>
-            <td>foreground.link.focus</td>
-            <td>{primary.light}</td>
-            <td class="css-var">--gw-foreground-link-focus</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
-            </td>
-          </tr>
-          <tr>
-            <td>foreground.link.hover</td>
-            <td>{primary_DEL.dark}</td>
-            <td class="css-var">--gw-foreground-link-hover</td>
             <td class="">
               <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
             </td>
           </tr>
           <tr>
+            <td>foreground.link.focus</td>
+            <td>{primary.dark}</td>
+            <td class="css-var">--gw-foreground-link-focus</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+            </td>
+          </tr>
+          <tr>
+            <td>foreground.link.hover</td>
+            <td>{primary.base}</td>
+            <td class="css-var">--gw-foreground-link-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
             <td>foreground.link.visited</td>
-            <td>{primary_DEL.dark}</td>
+            <td>{primary.dark}</td>
             <td class="css-var">--gw-foreground-link-visited</td>
             <td class="">
               <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
@@ -8724,7 +8732,7 @@
             <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-foreground-link-disabled</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 12%,52%)"></span> hsl(220, 12%,52%)
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -9985,15 +9993,15 @@
           </tr>
           <tr>
             <td>disabled.background</td>
-            <td>{neutral.200}</td>
+            <td>{background.disabled}</td>
             <td class="css-var">--gw-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
             <td>disabled.color</td>
-            <td>{neutral.400}</td>
+            <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-disabled-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
@@ -10268,12 +10276,12 @@
             <td>{background.disabled}</td>
             <td class="css-var">--gw-form-field-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
             <td>form.field.disabled.color</td>
-            <td>{disabled.color}</td>
+            <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-form-field-disabled-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
@@ -10353,7 +10361,7 @@
           </tr>
           <tr>
             <td>form.field.placeholder.color</td>
-            <td>{neutral.400}</td>
+            <td>{foreground.on-surface.read-only}</td>
             <td class="css-var">--gw-form-field-placeholder-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
@@ -10905,10 +10913,10 @@
           </tr>
           <tr>
             <td>sidenav.submenuitem.color</td>
-            <td>{foreground.on-surface.default}</td>
+            <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-sidenav-submenuitem-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -10921,18 +10929,18 @@
           </tr>
           <tr>
             <td>sidenav.submenuitem.hover.background</td>
-            <td>{background.raised}</td>
+            <td>{background.highlighted}</td>
             <td class="css-var">--gw-sidenav-submenuitem-hover-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(240, 98%, 98%)"></span> hsl(240, 98%, 98%)
+              <span class="swatch" style="background:hsl(240, 98%, 96%)"></span> hsl(240, 98%, 96%)
             </td>
           </tr>
           <tr>
             <td>sidenav.submenuitem.hover.color</td>
-            <td>{foreground.on-surface.primary}</td>
+            <td>{foreground.on-surface.default}</td>
             <td class="css-var">--gw-sidenav-submenuitem-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
             </td>
           </tr>
           <tr>
@@ -10945,10 +10953,10 @@
           </tr>
           <tr>
             <td>sidenav.submenuitem.selected.color</td>
-            <td>{foreground.on-surface.button-text}</td>
+            <td>{foreground.on-surface.default}</td>
             <td class="css-var">--gw-sidenav-submenuitem-selected-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
             </td>
           </tr>
           <tr>
@@ -10961,10 +10969,10 @@
           </tr>
           <tr>
             <td>sidenav.submenuitem.open.color</td>
-            <td>{foreground.on-surface.default}</td>
+            <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-sidenav-submenuitem-open-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -11172,7 +11180,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-inputtext-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -11508,7 +11516,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-radiobutton-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -11684,7 +11692,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-checkbox-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -11772,7 +11780,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-autocomplete-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -12232,6 +12240,142 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.color</td>
+            <td>{text.muted.color}</td>
+            <td class="css-var">--gw-accordion-header-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.hover.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-header-hover-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.hover.background</td>
+            <td>{default.background}</td>
+            <td class="css-var">--gw-accordion-header-hover-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.active.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-header-active-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.active.background</td>
+            <td>{default.background}</td>
+            <td class="css-var">--gw-accordion-header-active-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.active.hover.background</td>
+            <td>{default.background}</td>
+            <td class="css-var">--gw-accordion-header-active-hover-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.border.color</td>
+            <td>{border.color.default}</td>
+            <td class="css-var">--gw-accordion-header-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.background</td>
+            <td>{default.background}</td>
+            <td class="css-var">--gw-accordion-header-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-accordion-header-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.toggle.icon.color</td>
+            <td>{text.muted.color}</td>
+            <td class="css-var">--gw-accordion-header-toggle-icon-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.toggle.icon.hover.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-header-toggle-icon-hover-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.toggle.icon.active.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-header-toggle-icon-active-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.toggle.icon.active.hover.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-header-toggle-icon-active-hover-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.panel.border.color</td>
+            <td>{panel.border.color}</td>
+            <td class="css-var">--gw-accordion-panel-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.content.border.color</td>
+            <td>{border.color.default}</td>
+            <td class="css-var">--gw-accordion-content-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.content.background</td>
+            <td>{default.background}</td>
+            <td class="css-var">--gw-accordion-content-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.content.color</td>
+            <td>{text.color}</td>
+            <td class="css-var">--gw-accordion-content-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+            </td>
+          </tr>
+          <tr>
             <td>dialog.background</td>
             <td>{overlay.modal.background}</td>
             <td class="css-var">--gw-dialog-background</td>
@@ -12364,7 +12508,7 @@
             <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-avatar-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -12468,7 +12612,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-cascadeselect-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -12700,7 +12844,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-select-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13132,7 +13276,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-textarea-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13276,7 +13420,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-listbox-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13404,7 +13548,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-multiselect-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13708,7 +13852,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-togglebutton-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13716,7 +13860,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-togglebutton-disabled-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13764,7 +13908,7 @@
             <td>{form.field.disabled.background}</td>
             <td class="css-var">--gw-treeselect-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -13997,142 +14141,6 @@
             <td class="css-var">--gw-dataview-paginator-bottom-border-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.panel.border.color</td>
-            <td>{panel.border.color}</td>
-            <td class="css-var">--gw-accordion-panel-border-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.color</td>
-            <td>{text.muted.color}</td>
-            <td class="css-var">--gw-accordion-header-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.hover.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-header-hover-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.hover.background</td>
-            <td>{default.background}</td>
-            <td class="css-var">--gw-accordion-header-hover-background</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.active.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-header-active-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.active.background</td>
-            <td>{default.background}</td>
-            <td class="css-var">--gw-accordion-header-active-background</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.active.hover.background</td>
-            <td>{default.background}</td>
-            <td class="css-var">--gw-accordion-header-active-hover-background</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.border.color</td>
-            <td>{border.color.default}</td>
-            <td class="css-var">--gw-accordion-header-border-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.background</td>
-            <td>{default.background}</td>
-            <td class="css-var">--gw-accordion-header-background</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.focus.ring.color</td>
-            <td>{focus.ring.color}</td>
-            <td class="css-var">--gw-accordion-header-focus-ring-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.toggle.icon.color</td>
-            <td>{text.muted.color}</td>
-            <td class="css-var">--gw-accordion-header-toggle-icon-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.toggle.icon.hover.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-header-toggle-icon-hover-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.toggle.icon.active.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-header-toggle-icon-active-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.toggle.icon.active.hover.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-header-toggle-icon-active-hover-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.content.border.color</td>
-            <td>{border.color.default}</td>
-            <td class="css-var">--gw-accordion-content-border-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.content.background</td>
-            <td>{default.background}</td>
-            <td class="css-var">--gw-accordion-content-background</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.content.color</td>
-            <td>{text.color}</td>
-            <td class="css-var">--gw-accordion-content-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
             </td>
           </tr>
           <tr>
@@ -14444,7 +14452,7 @@
             <td>{background.disabled}</td>
             <td class="css-var">--gw-tabs-tab-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -14764,7 +14772,7 @@
             <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-statusmenu-icon-inactive-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 12%,52%)"></span> hsl(220, 12%,52%)
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -15412,7 +15420,7 @@
             <td>{background.disabled}</td>
             <td class="css-var">--gw-tieredmenu-item-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -17220,7 +17228,7 @@
             <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-button-link-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -17228,7 +17236,7 @@
             <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-button-link-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -17236,7 +17244,7 @@
             <td>{foreground.link.hover}</td>
             <td class="css-var">--gw-button-link-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
             </td>
           </tr>
           <tr>
@@ -17244,7 +17252,7 @@
             <td>{foreground.link.visited}</td>
             <td class="css-var">--gw-button-link-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18580,7 +18588,7 @@
             <td>{foreground.on-surface.disabled}</td>
             <td class="css-var">--gw-cluster-node-outofsync-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 12%,52%)"></span> hsl(220, 12%,52%)
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -18692,7 +18700,7 @@
             <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-link-idle-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18700,7 +18708,7 @@
             <td>{foreground.link.hover}</td>
             <td class="css-var">--gw-link-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
             </td>
           </tr>
           <tr>
@@ -18708,7 +18716,7 @@
             <td>{foreground.link.visited}</td>
             <td class="css-var">--gw-link-visited-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18868,7 +18876,7 @@
             <td>{background.disabled}</td>
             <td class="css-var">--gw-toggleswitch-handle-disabled-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 13%, 91%)"></span> hsl(220, 13%, 91%)
+              <span class="swatch" style="background:hsl(220, 14%, 95%)"></span> hsl(220, 14%, 95%)
             </td>
           </tr>
           <tr>
@@ -19169,18 +19177,18 @@
           </tr>
           <tr>
             <td>tag.primary.background</td>
-            <td>{primary_DEL.base}</td>
+            <td>{primary.lighter}</td>
             <td class="css-var">--gw-tag-primary-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+              <span class="swatch" style="background:hsl(240, 98%, 96%)"></span> hsl(240, 98%, 96%)
             </td>
           </tr>
           <tr>
             <td>tag.primary.color</td>
-            <td>{badge.primary.color}</td>
+            <td>{primary.dark}</td>
             <td class="css-var">--gw-tag-primary-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
             </td>
           </tr>
           <tr>
@@ -19193,10 +19201,10 @@
           </tr>
           <tr>
             <td>tag.secondary.color</td>
-            <td>{secondary.base}</td>
+            <td>{secondary.text}</td>
             <td class="css-var">--gw-tag-secondary-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(211, 37%, 15%)"></span> hsl(211, 37%, 15%)
             </td>
           </tr>
           <tr>
@@ -19292,7 +19300,7 @@
             <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-tag-default-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -19604,7 +19612,7 @@
             <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-togglebutton-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -19617,10 +19625,10 @@
           </tr>
           <tr>
             <td>togglebutton.icon.color</td>
-            <td>{button.secondary.icon.color}</td>
+            <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-togglebutton-icon-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -20924,7 +20932,7 @@
             <td>{foreground.on-surface.muted}</td>
             <td class="css-var">--gw-shortcuts-panel-heading-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
             </td>
           </tr>
           <tr>
@@ -21322,6 +21330,14 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.font.weight</td>
+            <td>600</td>
+            <td class="css-var">--gw-accordion-header-font-weight</td>
+            <td class="">
+              600
+            </td>
+          </tr>
+          <tr>
             <td>dialog.title.font.weight</td>
             <td>{font-weight.600}</td>
             <td class="css-var">--gw-dialog-title-font-weight</td>
@@ -21399,14 +21415,6 @@
             <td class="css-var">--gw-togglebutton-font-weight</td>
             <td class="">
               500
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.font.weight</td>
-            <td>600</td>
-            <td class="css-var">--gw-accordion-header-font-weight</td>
-            <td class="">
-              600
             </td>
           </tr>
           <tr>
@@ -21991,6 +21999,14 @@
             <td>textarea.sm.font.size</td>
             <td>{form.field.sm.font.size}</td>
             <td class="css-var">--gw-textarea-sm-font-size</td>
+            <td class="">
+              0.875rem
+            </td>
+          </tr>
+          <tr>
+            <td>textarea.font.size</td>
+            <td>{sm.font.size}</td>
+            <td class="css-var">--gw-textarea-font-size</td>
             <td class="">
               0.875rem
             </td>
@@ -23927,6 +23943,22 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-accordion-header-focus-ring-style</td>
+            <td class="">
+              solid
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.transition.duration</td>
+            <td>{transition.duration}</td>
+            <td class="css-var">--gw-accordion-transition-duration</td>
+            <td class="">
+              200ms
+            </td>
+          </tr>
+          <tr>
             <td>rating.focus.ring.style</td>
             <td>{focus.ring.style}</td>
             <td class="css-var">--gw-rating-focus-ring-style</td>
@@ -24138,22 +24170,6 @@
             <td>treeselect.transition.duration</td>
             <td>{form.field.transition.duration}</td>
             <td class="css-var">--gw-treeselect-transition-duration</td>
-            <td class="">
-              200ms
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.focus.ring.style</td>
-            <td>{focus.ring.style}</td>
-            <td class="css-var">--gw-accordion-header-focus-ring-style</td>
-            <td class="">
-              solid
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.transition.duration</td>
-            <td>{transition.duration}</td>
-            <td class="css-var">--gw-accordion-transition-duration</td>
             <td class="">
               200ms
             </td>
@@ -25014,6 +25030,21 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.focus.ring.shadow</td>
+            <td>{focus.ring.shadow}</td>
+            <td class="css-var">--gw-accordion-header-focus-ring-shadow</td>
+            <td class="">
+              <pre>{
+  "x": "0",
+  "y": "0",
+  "blur": "0",
+  "spread": "0",
+  "color": "{neutral.shadow.10}",
+  "type": "dropShadow"
+}</pre>
+            </td>
+          </tr>
+          <tr>
             <td>dialog.shadow</td>
             <td>{overlay.modal.shadow}</td>
             <td class="css-var">--gw-dialog-shadow</td>
@@ -25319,21 +25350,6 @@
             <td class="css-var">--gw-treeselect-overlay-shadow</td>
             <td class="error">
               [{"x":"0","y":"4","blur":"6","spread":"-1","color":"{neutral.shadow.10}","type":"dropShadow"},{"x":"0","y":"2","blur":"4","spread":"-2","color":"{neutral.shadow.10}","type":"dropShadow"}]
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.focus.ring.shadow</td>
-            <td>{focus.ring.shadow}</td>
-            <td class="css-var">--gw-accordion-header-focus-ring-shadow</td>
-            <td class="">
-              <pre>{
-  "x": "0",
-  "y": "0",
-  "blur": "0",
-  "spread": "0",
-  "color": "{neutral.shadow.10}",
-  "type": "dropShadow"
-}</pre>
             </td>
           </tr>
           <tr>
@@ -26923,6 +26939,54 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.border.width</td>
+            <td>0</td>
+            <td class="css-var">--gw-accordion-header-border-width</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-accordion-header-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.focus.ring.offset</td>
+            <td>{focus.ring.offset}</td>
+            <td class="css-var">--gw-accordion-header-focus-ring-offset</td>
+            <td class="">
+              1px
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.header.first.border.width</td>
+            <td>0</td>
+            <td class="css-var">--gw-accordion-header-first-border-width</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.panel.border.width</td>
+            <td>1</td>
+            <td class="css-var">--gw-accordion-panel-border-width</td>
+            <td class="">
+              1
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.content.border.width</td>
+            <td>0</td>
+            <td class="css-var">--gw-accordion-content-border-width</td>
+            <td class="">
+              0
+            </td>
+          </tr>
+          <tr>
             <td>rating.focus.ring.width</td>
             <td>{focus.ring.width}</td>
             <td class="css-var">--gw-rating-focus-ring-width</td>
@@ -27192,54 +27256,6 @@
             <td class="css-var">--gw-dataview-paginator-bottom-border-width</td>
             <td class="">
               1
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.panel.border.width</td>
-            <td>1</td>
-            <td class="css-var">--gw-accordion-panel-border-width</td>
-            <td class="">
-              1
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.border.width</td>
-            <td>0</td>
-            <td class="css-var">--gw-accordion-header-border-width</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.focus.ring.width</td>
-            <td>{focus.ring.width}</td>
-            <td class="css-var">--gw-accordion-header-focus-ring-width</td>
-            <td class="">
-              2px
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.focus.ring.offset</td>
-            <td>{focus.ring.offset}</td>
-            <td class="css-var">--gw-accordion-header-focus-ring-offset</td>
-            <td class="">
-              1px
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.header.first.border.width</td>
-            <td>0</td>
-            <td class="css-var">--gw-accordion-header-first-border-width</td>
-            <td class="">
-              0
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.content.border.width</td>
-            <td>0</td>
-            <td class="css-var">--gw-accordion-content-border-width</td>
-            <td class="">
-              0
             </td>
           </tr>
           <tr>
@@ -28756,6 +28772,86 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.figma.panel.stroke</td>
+            <td><pre>{
+  "color": "{accordion.panel.border.color}",
+  "width": "{accordion.panel.border.width}",
+  "style": "solid"
+}</pre></td>
+            <td class="css-var">--gw-accordion-figma-panel-stroke</td>
+            <td class="">
+              <pre>{
+  "color": "{accordion.panel.border.color}",
+  "width": "{accordion.panel.border.width}",
+  "style": "solid"
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.figma.header.stroke</td>
+            <td><pre>{
+  "color": "{accordion.header.border.color}",
+  "width": "{accordion.header.border.width}",
+  "style": "solid"
+}</pre></td>
+            <td class="css-var">--gw-accordion-figma-header-stroke</td>
+            <td class="">
+              <pre>{
+  "color": "{accordion.header.border.color}",
+  "width": "{accordion.header.border.width}",
+  "style": "solid"
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.figma.header.focus.ring.stroke</td>
+            <td><pre>{
+  "color": "{accordion.header.focus.ring.color}",
+  "width": "{accordion.header.focus.ring.width} + {accordion.header.focus.ring.offset}",
+  "style": "{accordion.header.focus.ring.style}"
+}</pre></td>
+            <td class="css-var">--gw-accordion-figma-header-focus-ring-stroke</td>
+            <td class="">
+              <pre>{
+  "color": "{accordion.header.focus.ring.color}",
+  "width": "{accordion.header.focus.ring.width} + {accordion.header.focus.ring.offset}",
+  "style": "{accordion.header.focus.ring.style}"
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.figma.header.focus.ring.offset.stroke</td>
+            <td><pre>{
+  "color": "{card.background}",
+  "width": "{accordion.header.focus.ring.offset}",
+  "style": "solid"
+}</pre></td>
+            <td class="css-var">--gw-accordion-figma-header-focus-ring-offset-stroke</td>
+            <td class="">
+              <pre>{
+  "color": "{card.background}",
+  "width": "{accordion.header.focus.ring.offset}",
+  "style": "solid"
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>accordion.figma.content.stroke</td>
+            <td><pre>{
+  "color": "{accordion.content.border.color}",
+  "width": "{accordion.content.border.width}",
+  "style": "solid"
+}</pre></td>
+            <td class="css-var">--gw-accordion-figma-content-stroke</td>
+            <td class="">
+              <pre>{
+  "color": "{accordion.content.border.color}",
+  "width": "{accordion.content.border.width}",
+  "style": "solid"
+}</pre>
+            </td>
+          </tr>
+          <tr>
             <td>dialog.figma.stroke</td>
             <td><pre>{
   "color": "{dialog.border.color}",
@@ -29631,86 +29727,6 @@
               <pre>{
   "color": "{dataview.content.border.color}",
   "width": "{dataview.content.border.width}",
-  "style": "solid"
-}</pre>
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.figma.panel.stroke</td>
-            <td><pre>{
-  "color": "{accordion.panel.border.color}",
-  "width": "{accordion.panel.border.width}",
-  "style": "solid"
-}</pre></td>
-            <td class="css-var">--gw-accordion-figma-panel-stroke</td>
-            <td class="">
-              <pre>{
-  "color": "{accordion.panel.border.color}",
-  "width": "{accordion.panel.border.width}",
-  "style": "solid"
-}</pre>
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.figma.header.stroke</td>
-            <td><pre>{
-  "color": "{accordion.header.border.color}",
-  "width": "{accordion.header.border.width}",
-  "style": "solid"
-}</pre></td>
-            <td class="css-var">--gw-accordion-figma-header-stroke</td>
-            <td class="">
-              <pre>{
-  "color": "{accordion.header.border.color}",
-  "width": "{accordion.header.border.width}",
-  "style": "solid"
-}</pre>
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.figma.header.focus.ring.stroke</td>
-            <td><pre>{
-  "color": "{accordion.header.focus.ring.color}",
-  "width": "{accordion.header.focus.ring.width} + {accordion.header.focus.ring.offset}",
-  "style": "{accordion.header.focus.ring.style}"
-}</pre></td>
-            <td class="css-var">--gw-accordion-figma-header-focus-ring-stroke</td>
-            <td class="">
-              <pre>{
-  "color": "{accordion.header.focus.ring.color}",
-  "width": "{accordion.header.focus.ring.width} + {accordion.header.focus.ring.offset}",
-  "style": "{accordion.header.focus.ring.style}"
-}</pre>
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.figma.header.focus.ring.offset.stroke</td>
-            <td><pre>{
-  "color": "{card.background}",
-  "width": "{accordion.header.focus.ring.offset}",
-  "style": "solid"
-}</pre></td>
-            <td class="css-var">--gw-accordion-figma-header-focus-ring-offset-stroke</td>
-            <td class="">
-              <pre>{
-  "color": "{card.background}",
-  "width": "{accordion.header.focus.ring.offset}",
-  "style": "solid"
-}</pre>
-            </td>
-          </tr>
-          <tr>
-            <td>accordion.figma.content.stroke</td>
-            <td><pre>{
-  "color": "{accordion.content.border.color}",
-  "width": "{accordion.content.border.width}",
-  "style": "solid"
-}</pre></td>
-            <td class="css-var">--gw-accordion-figma-content-stroke</td>
-            <td class="">
-              <pre>{
-  "color": "{accordion.content.border.color}",
-  "width": "{accordion.content.border.width}",
   "style": "solid"
 }</pre>
             </td>
@@ -33276,6 +33292,19 @@
             </td>
           </tr>
           <tr>
+            <td>accordion.header.typography</td>
+            <td>{heading.h6}</td>
+            <td class="css-var">--gw-accordion-header-typography</td>
+            <td class="">
+              <pre>{
+  "fontFamily": "{font.family.heading}",
+  "fontWeight": "{font-weight.600}",
+  "fontSize": "{h6.font.size}",
+  "lineHeight": "100%"
+}</pre>
+            </td>
+          </tr>
+          <tr>
             <td>page.title.typography</td>
             <td>{heading.h1}</td>
             <td class="css-var">--gw-page-title-typography</td>
@@ -33411,9 +33440,9 @@
             </td>
           </tr>
           <tr>
-            <td>auto.line.height</td>
+            <td>normal.line.height</td>
             <td>100%</td>
-            <td class="css-var">--gw-auto-line-height</td>
+            <td class="css-var">--gw-normal-line-height</td>
             <td class="">
               100%
             </td>
