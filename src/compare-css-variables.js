@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 import { execSync } from "child_process";
+import { compareDeprecatedVariables } from "./deprecated-tokens.js";
 
 // --- Load configuration -------------------------------------------------------
 const propsFile = path.join(process.cwd(), "src/config.properties");
@@ -140,6 +141,14 @@ function detectRenames(removed, added) {
   return renames;
 }
 
+// --- Helper: read deprecated variables -----------------------------------------
+// The build writes them next to the theme file (see src/deprecated-tokens.js). Releases before they were listed have
+// no such file, so everything deprecated now counts as deprecated in this release.
+function readDeprecatedVariables(distDir, themeFile) {
+  const file = path.join(distDir, themeFile.replace(/^variables-/, "deprecated-variables-").replace(/\.css$/, ".json"));
+  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : [];
+}
+
 // --- Collect theme files ------------------------------------------------------
 const localFiles = fs.readdirSync(localDistDir).filter(f => f.startsWith("variables-") && f.endsWith(".css"));
 const oldFiles = fs.readdirSync(oldDistDir).filter(f => f.startsWith("variables-") && f.endsWith(".css"));
@@ -207,7 +216,37 @@ for (const file of allThemes) {
   }
 }
 
+// Deprecated variables are listed in every release until they are removed, not only when they become deprecated.
+for (const file of allThemes.filter((f) => fs.existsSync(path.join(localDistDir, f)))) {
+  const localVars = parseCssVariables(fs.readFileSync(path.join(localDistDir, file), "utf8"));
+  const deprecated = compareDeprecatedVariables(
+    readDeprecatedVariables(localDistDir, file),
+    readDeprecatedVariables(oldDistDir, file)
+  );
+  deprecated.forEach((entry) => {
+    tableRows.push({
+      theme: file,
+      variable: entry.variable,
+      replacement: entry.replacement,
+      isNew: entry.isNew,
+      status: "Deprecated",
+      oldValue: "",
+      newValue: localVars[entry.variable] || "",
+    });
+  });
+}
+
 // --- Generate HTML ------------------------------------------------------------
+function variableCell(row) {
+  if (row.newVariable) {
+    return `<div><span class="name-label">old:</span> ${row.variable}</div><div class="renamed-to"><span class="name-label">new:</span> ${row.newVariable}</div>`;
+  }
+  if (row.replacement) {
+    return `<div>${row.variable}</div><div class="replaced-by"><span class="name-label">use:</span> ${row.replacement}</div>`;
+  }
+  return row.variable;
+}
+
 const humanReadable = new Date().toLocaleString();
 const htmlContent = `
 <!DOCTYPE html>
@@ -250,6 +289,12 @@ tr:nth-child(even) { background: #f9f9f9; }
 .Changed { color: #f57c00; font-weight: 600; }
 .Added { color: #2e7d32; font-weight: 600; }
 .Renamed { color: #1565c0; font-weight: 600; }
+.Deprecated { color: #6a1b9a; font-weight: 600; }
+.new-badge {
+  display: inline-block; margin-left: 0.4rem; padding: 0 0.35rem; border-radius: 0.4rem;
+  background: #f3e5f5; border: 1px solid #ce93d8; font-size: 0.75rem; font-weight: 600;
+}
+.replaced-by { margin-top: 0.2rem; color: #6a1b9a; }
 .renamed-to { margin-top: 0.2rem; color: #1565c0; }
 .name-label { display: inline-block; width: 2.5rem; color: #888; font-size: 0.85rem; }
 #countInfo { margin-top: 0.75rem; font-weight: 500; color: #555; }
@@ -283,6 +328,7 @@ tr:nth-child(even) { background: #f9f9f9; }
       <option value="Added">Added</option>
       <option value="Renamed">Renamed</option>
       <option value="Changed">Changed</option>
+      <option value="Deprecated">Deprecated</option>
     </select>
   </div>
 </div>
@@ -301,10 +347,10 @@ tr:nth-child(even) { background: #f9f9f9; }
   </thead>
   <tbody>
     ${tableRows.map(row => `
-      <tr>
+      <tr data-status="${row.status}">
         <td>${row.theme}</td>
-        <td>${row.newVariable ? `<div><span class="name-label">old:</span> ${row.variable}</div><div class="renamed-to"><span class="name-label">new:</span> ${row.newVariable}</div>` : row.variable}</td>
-        <td class="${row.status}">${row.status}</td>
+        <td>${variableCell(row)}</td>
+        <td class="${row.status}">${row.status}${row.isNew ? '<span class="new-badge" title="Deprecated in this release">new</span>' : ""}</td>
         <td>${row.oldValue}</td>
         <td>${row.newValue}</td>
       </tr>
@@ -328,7 +374,7 @@ function filterTable() {
   for (const row of table.rows) {
     const theme = row.cells[0].innerText;
     const variable = row.cells[1].innerText.toLowerCase();
-    const status = row.cells[2].innerText;
+    const status = row.dataset.status;
     const match = (!query || variable.includes(query)) &&
                   (!selectedTheme || theme === selectedTheme) &&
                   (!selectedStatus || status === selectedStatus);
@@ -349,7 +395,8 @@ statusFilter.addEventListener("change", filterTable);
 
 // --- Generate Markdown summary ------------------------------------------------
 // Used as the CSS variables section of the GitHub release notes (src/create-github-release.js).
-// Rows are grouped by variable, with a column per theme. The added and changed lists come after
+// Rows are grouped by variable, with a column per theme. The removed, renamed and deprecated variables come before
+// the DETAILS_MARKER, so they stay in the release notes when they are shortened. The added and changed lists come after
 // the DETAILS_MARKER, so the release script can drop them when the notes get too long.
 const DETAILS_MARKER = "<!-- details -->";
 const themeName = (file) => file.replace(/^variables-/, "").replace(/\.css$/, "");
@@ -361,14 +408,18 @@ function groupByVariable(status) {
   tableRows
     .filter((row) => row.status === status)
     .forEach((row) => {
-      const key = row.newVariable ? `${row.variable} ${row.newVariable}` : row.variable;
-      if (!groups.has(key)) groups.set(key, { variable: row.variable, newVariable: row.newVariable, themes: {} });
+      const target = row.newVariable || row.replacement;
+      const key = target ? `${row.variable} ${target}` : row.variable;
+      if (!groups.has(key)) {
+        groups.set(key, { variable: row.variable, newVariable: row.newVariable, replacement: row.replacement, themes: {} });
+      }
       groups.get(key).themes[themeName(row.theme)] = row;
     });
   return [...groups.values()].sort((a, b) => a.variable.localeCompare(b.variable));
 }
 
-const groups = Object.fromEntries(["Removed", "Renamed", "Added", "Changed"].map((s) => [s, groupByVariable(s)]));
+const STATUSES = ["Removed", "Renamed", "Added", "Changed", "Deprecated"];
+const groups = Object.fromEntries(STATUSES.map((s) => [s, groupByVariable(s)]));
 const themeColumns = (cell) => (group) => themes.map((theme) => (group.themes[theme] ? cell(group.themes[theme]) : "–"));
 
 function table(header, rows) {
@@ -387,7 +438,7 @@ const markdown = [`Compared with \`${packageName}@${packageVersion}\`.`];
 if (!tableRows.length) {
   markdown.push("No CSS variables changed.");
 } else {
-  markdown.push(table(["Removed", "Renamed", "Added", "Changed"], [Object.values(groups).map((g) => g.length)]));
+  markdown.push(table(STATUSES, [STATUSES.map((s) => groups[s].length)]));
 
   const themeList = (group) => themes.filter((theme) => group.themes[theme]).join(", ");
   const breaking = [
@@ -398,6 +449,18 @@ if (!tableRows.length) {
     markdown.push(
       "**⚠️ Removed and renamed variables.** Applications that use them must be updated.",
       table(["Variable", "Change", "Themes"], breaking)
+    );
+  }
+
+  if (groups.Deprecated.length) {
+    const since = (group) => (Object.values(group.themes).some((row) => row.isNew) ? "**this release**" : "earlier");
+    markdown.push(
+      "**Deprecated variables.** They still work, but will be removed in a later release. Applications should " +
+        "switch to the replacement.",
+      table(
+        ["Variable", "Replacement", "Themes", "Deprecated in"],
+        groups.Deprecated.map((g) => [code(g.variable), code(g.replacement), themeList(g), since(g)])
+      )
     );
   }
 

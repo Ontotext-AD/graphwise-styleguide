@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { registerCustomTransforms } from './transforms.js';
 import { registerCustomPreprocessors } from './preprocessors.js';
+import { listDeprecatedVariables } from './deprecated-tokens.js';
 
 const TOKENS_FILEPATH = 'tokens/tokens.json';
 
@@ -92,6 +93,23 @@ function modifyTokensForMode(mode) {
 }
 
 /**
+ * Writes the deprecated CSS variables and their replacements to `dist/deprecated-variables-<mode>.json`, which
+ * `npm run compare-css-variables` uses for the release notes. Throws on an invalid replacement. See
+ * src/deprecated-tokens.js.
+ *
+ * @param {StyleDictionary} sd
+ * @param {'light'|'dark'} mode
+ */
+async function writeDeprecatedVariables(sd, mode) {
+  const { allTokens } = await sd.getPlatformTokens('css');
+  const deprecated = listDeprecatedVariables(allTokens, filesConfig.filter);
+  const file = path.join(configuration.platforms.css.buildPath, `deprecated-variables-${mode}.json`);
+  fs.writeFileSync(file, JSON.stringify(deprecated, null, 2) + '\n');
+  // eslint-disable-next-line no-console
+  console.log(`✔︎ ${file} (${deprecated.length} deprecated)`);
+}
+
+/**
  * Main build function to run Style Dictionary.
  * Using an async function allows us to use top-level await.
  */
@@ -120,6 +138,7 @@ async function main() {
   console.log('########## Cleaning old platform files ##########');
   await sd.cleanAllPlatforms();
   await sd.buildAllPlatforms();
+  await writeDeprecatedVariables(sd, 'light');
 
   // eslint-disable-next-line no-console
   console.log('########## Building Dark theme ##########');
@@ -137,6 +156,7 @@ async function main() {
   }];
   sd = new StyleDictionary(darkConfig);
   await sd.buildAllPlatforms();
+  await writeDeprecatedVariables(sd, 'dark');
 
   // eslint-disable-next-line no-console
   console.log('########## Build complete! ##########');

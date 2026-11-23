@@ -21,6 +21,9 @@ to npm as `graphwise-styleguide`. The process from Figma to release is in README
   comments before changing transforms.
 - The build exits non-zero on invalid tokens and broken references (`brokenReferences: 'throw'`); a release depends on
   that, so keep it failing loudly.
+- Tokens marked `$deprecated` are still output; `src/deprecated-tokens.js` lists them with their replacements in
+  `dist/deprecated-variables-{light,dark}.json` (compared by `compare-css-variables` for the release notes) and fails the
+  build on a missing or deprecated `replacementToken`.
 - `dist/`, `modes/` and `generated/` are build outputs (gitignored). `dist/` is the npm package, including the
   `gw-purge-css` bin the applications run, so changes under `src/purge-css/` affect consumers.
 
@@ -28,6 +31,7 @@ to npm as `graphwise-styleguide`. The process from Figma to release is in README
 
 - Node comes from nvm (`.nvmrc`); load it before running npm in a fresh shell:
   `. "$HOME/.nvm/nvm.sh" && nvm use`.
+- `npm test` runs the Jest tests (`src/**/*.test.js`).
 - `npm run lint` is currently broken: `eslint.config.js` is CommonJS in an ESM package.
 
 ## Release
