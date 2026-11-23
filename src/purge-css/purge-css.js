@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { CssVariablePurger } from "./css-variable-purger.js";
+import { checkDeprecatedUsages } from "./deprecated-usages.js";
 
 function verifyResult(result, options) {
   // eslint-disable-next-line no-console
@@ -76,4 +77,7 @@ export async function purgeCss(config) {
       outputFile: config.darkModeOutputFile
     });
   }
+
+  // Only warns: the purge does not fail on deprecated variables, they are still declared.
+  checkDeprecatedUsages(path.join(__dirname, '..', '..', 'dist'), config.searchPaths, config.ignorePaths);
 }

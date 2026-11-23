@@ -113,6 +113,21 @@ The CSS variable of a deprecated token is still generated, so the applications k
 The [release notes](#release-notes) and the CSS variables diff list the deprecated variables in every release until
 they are removed. When they show up as deprecated in this release, the applications should switch to the replacements.
 
+### Check an application for deprecated variables
+`gw-check-deprecated` prints the deprecated variables an application uses, with the file, the line and the replacement:
+```
+⚠️  1 usage(s) of 1 deprecated graphwise-styleguide variable(s). They will be removed in a later release, switch to the replacements:
+  src/button.scss:2  --gw-button-warning-color → --gw-button-warn-color
+```
+It scans the files that match the glob patterns passed as arguments, or the `searchPaths` and `ignorePaths` of the
+[gw-purge-css](#optimize-styleguide) config file (`purge-css-config.json` or `--configFile <file>`). Any occurrence of
+the variable name counts: `var()`, string literals and overrides. By default it only warns; with `--fail` it exits with
+an error when a deprecated variable is used. Add it to the application's lint or build scripts:
+```
+"lint:styleguide": "gw-check-deprecated 'src/**/*.{html,scss,css,ts,js}'"
+```
+`gw-purge-css` prints the same warnings after the purge, without failing.
+
 A deprecated token can be deleted in a later release, after all the applications that use it have switched to the
 replacement. The removal is then listed as a breaking change in the release notes.
 
