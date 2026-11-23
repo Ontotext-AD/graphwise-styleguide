@@ -23,7 +23,8 @@ to npm as `graphwise-styleguide`. The process from Figma to release is in README
   that, so keep it failing loudly.
 - Tokens marked `$deprecated` are still output; `src/deprecated-tokens.js` lists them with their replacements in
   `dist/deprecated-variables-{light,dark}.json` (compared by `compare-css-variables` for the release notes) and fails the
-  build on a missing or deprecated `replacementToken`.
+  build on a missing or deprecated `replacementToken`. The `gw-check-deprecated` bin (and `gw-purge-css`) warns the
+  applications about the deprecated variables they use (`src/purge-css/deprecated-usages.js`).
 - `dist/`, `modes/` and `generated/` are build outputs (gitignored). `dist/` is the npm package, including the
   `gw-purge-css` bin the applications run, so changes under `src/purge-css/` affect consumers.
 

@@ -25,7 +25,8 @@
     "dist/"
   ],
   "bin": {
-    "gw-purge-css": "dist/gw-purge-css.js"
+    "gw-purge-css": "dist/gw-purge-css.js",
+    "gw-check-deprecated": "dist/gw-check-deprecated.js"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
