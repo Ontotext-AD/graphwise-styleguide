@@ -128,6 +128,24 @@ an error when a deprecated variable is used. Add it to the application's lint or
 ```
 `gw-purge-css` prints the same warnings after the purge, without failing.
 
+#### In a host application
+In a micro-frontend setup (e.g. a single-spa root config, like the GraphDB Workbench `root-config`), the host depends on
+the styleguide and loads its stylesheet, but the variables are used in the micro-frontends. Run the check in the host,
+where the bin is installed, and pass globs for the host and every micro-frontend in the same repository. The patterns
+are relative to the host package, so they can point to its siblings:
+```json
+{
+  "scripts": {
+    "lint:styleguide": "gw-check-deprecated 'src/**/*.{html,css,scss,less,ts,js}' '../{workbench,legacy-workbench,shared-components}/src/**/*.{html,css,scss,less,ts,js}'"
+  }
+}
+```
+`node_modules` is skipped by default (with globs as arguments); `dist/` and other build outputs are not, so keep the
+patterns under the source folders. Add `--fail` when the check runs in CI and the migration is to be enforced.
+
+A micro-frontend in another repository (e.g. a plugin) is not seen by the host's check. It can run the check against
+the version the host uses by adding `graphwise-styleguide` with the same version as a dev dependency.
+
 A deprecated token can be deleted in a later release, after all the applications that use it have switched to the
 replacement. The removal is then listed as a breaking change in the release notes.
 
