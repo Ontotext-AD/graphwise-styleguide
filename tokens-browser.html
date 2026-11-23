@@ -25,7 +25,7 @@
 <body>
   <nav>
     <h1>Design tokens</h1>
-    <ul><li><a href="#spacing">Spacing <span style="color:#888">(407)</span></a></li><li><a href="#borderRadius">BorderRadius <span style="color:#888">(162)</span></a></li><li><a href="#color">Color <span style="color:#888">(2060)</span></a></li><li><a href="#fontFamilies">FontFamilies <span style="color:#888">(5)</span></a></li><li><a href="#fontWeights">FontWeights <span style="color:#888">(44)</span></a></li><li><a href="#dimension">Dimension <span style="color:#888">(8)</span></a></li><li><a href="#fontSizes">FontSizes <span style="color:#888">(58)</span></a></li><li><a href="#sizing">Sizing <span style="color:#888">(196)</span></a></li><li><a href="#opacity">Opacity <span style="color:#888">(3)</span></a></li><li><a href="#other">Other <span style="color:#888">(110)</span></a></li><li><a href="#boxShadow">BoxShadow <span style="color:#888">(138)</span></a></li><li><a href="#borderWidth">BorderWidth <span style="color:#888">(145)</span></a></li><li><a href="#border">Border <span style="color:#888">(289)</span></a></li><li><a href="#typography">Typography <span style="color:#888">(47)</span></a></li><li><a href="#lineHeights">LineHeights <span style="color:#888">(13)</span></a></li><li><a href="#number">Number <span style="color:#888">(2)</span></a></li><li><a href="#textDecoration">TextDecoration <span style="color:#888">(1)</span></a></li></ul>
+    <ul><li><a href="#spacing">Spacing <span style="color:#888">(408)</span></a></li><li><a href="#borderRadius">BorderRadius <span style="color:#888">(162)</span></a></li><li><a href="#color">Color <span style="color:#888">(2109)</span></a></li><li><a href="#fontFamilies">FontFamilies <span style="color:#888">(5)</span></a></li><li><a href="#fontWeights">FontWeights <span style="color:#888">(44)</span></a></li><li><a href="#dimension">Dimension <span style="color:#888">(8)</span></a></li><li><a href="#fontSizes">FontSizes <span style="color:#888">(58)</span></a></li><li><a href="#sizing">Sizing <span style="color:#888">(196)</span></a></li><li><a href="#opacity">Opacity <span style="color:#888">(3)</span></a></li><li><a href="#other">Other <span style="color:#888">(115)</span></a></li><li><a href="#boxShadow">BoxShadow <span style="color:#888">(139)</span></a></li><li><a href="#borderWidth">BorderWidth <span style="color:#888">(155)</span></a></li><li><a href="#border">Border <span style="color:#888">(289)</span></a></li><li><a href="#typography">Typography <span style="color:#888">(48)</span></a></li><li><a href="#lineHeights">LineHeights <span style="color:#888">(13)</span></a></li><li><a href="#number">Number <span style="color:#888">(2)</span></a></li><li><a href="#textDecoration">TextDecoration <span style="color:#888">(1)</span></a></li></ul>
   </nav>
   <main>
     <div id="filter-bar">
@@ -1051,6 +1051,14 @@
             <td class="css-var">--gw-chip-gap</td>
             <td class="">
               0.5rem
+            </td>
+          </tr>
+          <tr>
+            <td>chip.remove.icon.padding</td>
+            <td>{space.0,25}</td>
+            <td class="css-var">--gw-chip-remove-icon-padding</td>
+            <td class="">
+              0.25rem
             </td>
           </tr>
           <tr>
@@ -6280,6 +6288,102 @@
             </td>
           </tr>
           <tr>
+            <td>tint.danger.bg</td>
+            <td>{danger.200}</td>
+            <td class="css-var">--gw-tint-danger-bg</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 94%)"></span> hsl(0, 60%, 94%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.bg-hover</td>
+            <td>{danger.300}</td>
+            <td class="css-var">--gw-tint-danger-bg-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 89%)"></span> hsl(0, 60%, 89%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.border</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-border</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.border-active</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-border-active</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.text</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-text</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.text-hover</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-text-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.bg</td>
+            <td>{warning.300}</td>
+            <td class="css-var">--gw-tint-warning-bg</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 89%)"></span> hsl(48, 65%, 89%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.bg-hover</td>
+            <td>{warning.400}</td>
+            <td class="css-var">--gw-tint-warning-bg-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 78%)"></span> hsl(48, 65%, 78%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.border</td>
+            <td>{warning.800}</td>
+            <td class="css-var">--gw-tint-warning-border</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.border-active</td>
+            <td>{warning.800}</td>
+            <td class="css-var">--gw-tint-warning-border-active</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.text</td>
+            <td>{warning.800}</td>
+            <td class="css-var">--gw-tint-warning-text</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.text-hover</td>
+            <td>{warning.800}</td>
+            <td class="css-var">--gw-tint-warning-text-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
             <td>info.100</td>
             <td>{color.steel.100}</td>
             <td class="css-var">--gw-info-100</td>
@@ -6733,6 +6837,14 @@
             <td class="css-var">--gw-foreground-on-surface-read-only</td>
             <td class="">
               <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+            </td>
+          </tr>
+          <tr>
+            <td>foreground.on-surface.placeholder</td>
+            <td>{neutral.600}</td>
+            <td class="css-var">--gw-foreground-on-surface-placeholder</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -8200,6 +8312,102 @@
             </td>
           </tr>
           <tr>
+            <td>tint.danger.bg</td>
+            <td>{danger.100}</td>
+            <td class="css-var">--gw-tint-danger-bg</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 97%)"></span> hsl(0, 60%, 97%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.bg-hover</td>
+            <td>{danger.200}</td>
+            <td class="css-var">--gw-tint-danger-bg-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 94%)"></span> hsl(0, 60%, 94%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.border</td>
+            <td>{danger.600}</td>
+            <td class="css-var">--gw-tint-danger-border</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.border-active</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-border-active</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.text</td>
+            <td>{danger.600}</td>
+            <td class="css-var">--gw-tint-danger-text</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.danger.text-hover</td>
+            <td>{danger.700}</td>
+            <td class="css-var">--gw-tint-danger-text-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.bg</td>
+            <td>{warning.100}</td>
+            <td class="css-var">--gw-tint-warning-bg</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 90%, 98%)"></span> hsl(48, 90%, 98%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.bg-hover</td>
+            <td>{warning.200}</td>
+            <td class="css-var">--gw-tint-warning-bg-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 94%)"></span> hsl(48, 65%, 94%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.border</td>
+            <td>{warning.500}</td>
+            <td class="css-var">--gw-tint-warning-border</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 65%)"></span> hsl(40, 60%, 65%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.border-active</td>
+            <td>{warning.700}</td>
+            <td class="css-var">--gw-tint-warning-border-active</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.text</td>
+            <td>{warning.500}</td>
+            <td class="css-var">--gw-tint-warning-text</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 65%)"></span> hsl(40, 60%, 65%)
+            </td>
+          </tr>
+          <tr>
+            <td>tint.warning.text-hover</td>
+            <td>{warning.700}</td>
+            <td class="css-var">--gw-tint-warning-text-hover</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+            </td>
+          </tr>
+          <tr>
             <td>info.100</td>
             <td>{color.steel.800}</td>
             <td class="css-var">--gw-info-100</td>
@@ -8601,10 +8809,10 @@
           </tr>
           <tr>
             <td>foreground.on-surface.button-text</td>
-            <td>{primary.darker}</td>
+            <td>{primary.dark}</td>
             <td class="css-var">--gw-foreground-on-surface-button-text</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 95%, 15%)"></span> hsl(231, 95%, 15%)
+              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
             </td>
           </tr>
           <tr>
@@ -8653,6 +8861,14 @@
             <td class="css-var">--gw-foreground-on-surface-read-only</td>
             <td class="">
               <span class="swatch" style="background:hsl(210, 14%, 83%)"></span> hsl(210, 14%, 83%)
+            </td>
+          </tr>
+          <tr>
+            <td>foreground.on-surface.placeholder</td>
+            <td>{neutral.400}</td>
+            <td class="css-var">--gw-foreground-on-surface-placeholder</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
             </td>
           </tr>
           <tr>
@@ -10241,7 +10457,7 @@
           </tr>
           <tr>
             <td>highlight.color</td>
-            <td>{primary_DEL.base}</td>
+            <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-highlight-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
@@ -10361,10 +10577,10 @@
           </tr>
           <tr>
             <td>form.field.placeholder.color</td>
-            <td>{foreground.on-surface.read-only}</td>
+            <td>{foreground.on-surface.placeholder}</td>
             <td class="css-var">--gw-form-field-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -10849,18 +11065,18 @@
           </tr>
           <tr>
             <td>sidenav.menuitem.hover.color</td>
-            <td>{foreground.on-surface.default}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-sidenav-menuitem-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
             <td>sidenav.menuitem.selected.icon.color</td>
-            <td>{foreground.on-surface.default}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-sidenav-menuitem-selected-icon-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -10873,10 +11089,10 @@
           </tr>
           <tr>
             <td>sidenav.menuitem.selected.color</td>
-            <td>{foreground.on-surface.default}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-sidenav-menuitem-selected-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -11284,7 +11500,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-inputtext-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -11876,7 +12092,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-autocomplete-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -12708,7 +12924,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-cascadeselect-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -12948,7 +13164,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-select-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -13372,7 +13588,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-textarea-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -13644,7 +13860,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-multiselect-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -14004,7 +14220,7 @@
             <td>{form.field.placeholder.color}</td>
             <td class="css-var">--gw-treeselect-placeholder-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 11%, 65%)"></span> hsl(220, 11%, 65%)
+              <span class="swatch" style="background:hsl(215, 12%, 38%)"></span> hsl(215, 12%, 38%)
             </td>
           </tr>
           <tr>
@@ -14636,7 +14852,15 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-contextmenu-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>contextmenu.item.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-contextmenu-item-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
           </tr>
           <tr>
@@ -14652,7 +14876,7 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-contextmenu-item-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -14684,7 +14908,7 @@
             <td>{sidenav.menuitem.selected.icon.color}</td>
             <td class="css-var">--gw-contextmenu-item-icon-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -14700,7 +14924,7 @@
             <td>{sidenav.menuitem.hover.color}</td>
             <td class="css-var">--gw-contextmenu-submenu-icon-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -14836,7 +15060,15 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-megamenu-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>megamenu.item.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-megamenu-item-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
           </tr>
           <tr>
@@ -14852,7 +15084,7 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-megamenu-item-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -14884,7 +15116,7 @@
             <td>{sidenav.menuitem.selected.icon.color}</td>
             <td class="css-var">--gw-megamenu-item-icon-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -14940,7 +15172,7 @@
             <td>{sidenav.menuitem.hover.color}</td>
             <td class="css-var">--gw-megamenu-submenu-icon-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15028,7 +15260,15 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-menu-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>menu.item.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-menu-item-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
           </tr>
           <tr>
@@ -15116,7 +15356,15 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-menubar-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>menubar.item.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-menubar-item-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
           </tr>
           <tr>
@@ -15132,7 +15380,7 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-menubar-item-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15164,7 +15412,7 @@
             <td>{sidenav.menuitem.selected.icon.color}</td>
             <td class="css-var">--gw-menubar-item-icon-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15196,7 +15444,7 @@
             <td>{sidenav.menuitem.hover.color}</td>
             <td class="css-var">--gw-menubar-submenu-icon-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15284,7 +15532,15 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-panelmenu-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>panelmenu.item.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-panelmenu-item-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
           </tr>
           <tr>
@@ -15324,7 +15580,7 @@
             <td>{sidenav.menuitem.hover.color}</td>
             <td class="css-var">--gw-panelmenu-submenu-icon-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15364,7 +15620,7 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-tieredmenu-item-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15380,7 +15636,7 @@
             <td>{sidenav.menuitem.selected.color}</td>
             <td class="css-var">--gw-tieredmenu-item-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15412,7 +15668,7 @@
             <td>{sidenav.menuitem.selected.icon.color}</td>
             <td class="css-var">--gw-tieredmenu-item-icon-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -15444,7 +15700,7 @@
             <td>{sidenav.menuitem.hover.color}</td>
             <td class="css-var">--gw-tieredmenu-submenu-icon-focus-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(220, 20%, 3%)"></span> hsl(220, 20%, 3%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -17121,10 +17377,10 @@
           </tr>
           <tr>
             <td>button.primary.hover.border.color</td>
-            <td>{foreground.on-surface.strong}</td>
+            <td>{primary.light}</td>
             <td class="css-var">--gw-button-primary-hover-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+              <span class="swatch" style="background:hsl(232, 100%, 59%)"></span> hsl(232, 100%, 59%)
             </td>
           </tr>
           <tr>
@@ -17221,6 +17477,62 @@
             <td class="css-var">--gw-button-primary-disabled-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.text.secondary.color</td>
+            <td>{text.muted.color}</td>
+            <td class="css-var">--gw-button-text-secondary-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(217, 15%, 23%)"></span> hsl(217, 15%, 23%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.text.danger.color</td>
+            <td>{error.text}</td>
+            <td class="css-var">--gw-button-text-danger-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.text.warn.color</td>
+            <td>{tint.warning.text}</td>
+            <td class="css-var">--gw-button-text-warn-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.outlined.primary.color</td>
+            <td>{foreground.on-surface.button-text}</td>
+            <td class="css-var">--gw-button-outlined-primary-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.outlined.primary.border.color</td>
+            <td>{foreground.on-surface.button-border}</td>
+            <td class="css-var">--gw-button-outlined-primary-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.outlined.warn.color</td>
+            <td>{tint.warning.text}</td>
+            <td class="css-var">--gw-button-outlined-warn-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.outlined.warn.border.color</td>
+            <td>{tint.warning.border}</td>
+            <td class="css-var">--gw-button-outlined-warn-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
@@ -17721,80 +18033,160 @@
           </tr>
           <tr>
             <td>button.warning.background</td>
-            <td>{warning.base}</td>
+            <td>{tint.warning.bg}</td>
             <td class="css-var">--gw-button-warning-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+              <span class="swatch" style="background:hsl(48, 65%, 89%)"></span> hsl(48, 65%, 89%)
             </td>
           </tr>
           <tr>
             <td>button.warning.hover.background</td>
-            <td>{warning.dark}</td>
+            <td>{tint.warning.bg-hover}</td>
             <td class="css-var">--gw-button-warning-hover-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 78%)"></span> hsl(48, 65%, 78%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warning.hover.border.color</td>
+            <td>{tint.warning.text-hover}</td>
+            <td class="css-var">--gw-button-warning-hover-border-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
-            <td>button.warning.hover.border.color</td>
-            <td>{warning.base}</td>
-            <td class="css-var">--gw-button-warning-hover-border-color</td>
-            <td class="">
-              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
-            </td>
-          </tr>
-          <tr>
             <td>button.warning.hover.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.warning.text-hover}</td>
             <td class="css-var">--gw-button-warning-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
             <td>button.warning.active.background</td>
-            <td>{warning.base}</td>
+            <td>{tint.warning.bg-hover}</td>
             <td class="css-var">--gw-button-warning-active-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+              <span class="swatch" style="background:hsl(48, 65%, 78%)"></span> hsl(48, 65%, 78%)
             </td>
           </tr>
           <tr>
             <td>button.warning.active.border.color</td>
-            <td>{warning.base}</td>
+            <td>{tint.warning.border-active}</td>
             <td class="css-var">--gw-button-warning-active-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
             <td>button.warning.active.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.warning.text-hover}</td>
             <td class="css-var">--gw-button-warning-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
             <td>button.warning.border.color</td>
-            <td>{warning.base}</td>
+            <td>{tint.warning.border}</td>
             <td class="css-var">--gw-button-warning-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(40, 60%, 36%)"></span> hsl(40, 60%, 36%)
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
             <td>button.warning.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.warning.text}</td>
             <td class="css-var">--gw-button-warning-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
             </td>
           </tr>
           <tr>
             <td>button.warning.focus.ring.color</td>
             <td>{focus.ring.color}</td>
             <td class="css-var">--gw-button-warning-focus-ring-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.background</td>
+            <td>{tint.warning.bg}</td>
+            <td class="css-var">--gw-button-warn-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 89%)"></span> hsl(48, 65%, 89%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.hover.background</td>
+            <td>{tint.warning.bg-hover}</td>
+            <td class="css-var">--gw-button-warn-hover-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 78%)"></span> hsl(48, 65%, 78%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.hover.border.color</td>
+            <td>{tint.warning.text-hover}</td>
+            <td class="css-var">--gw-button-warn-hover-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.hover.color</td>
+            <td>{tint.warning.text-hover}</td>
+            <td class="css-var">--gw-button-warn-hover-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.active.background</td>
+            <td>{tint.warning.bg-hover}</td>
+            <td class="css-var">--gw-button-warn-active-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(48, 65%, 78%)"></span> hsl(48, 65%, 78%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.active.border.color</td>
+            <td>{tint.warning.border-active}</td>
+            <td class="css-var">--gw-button-warn-active-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.active.color</td>
+            <td>{tint.warning.text-hover}</td>
+            <td class="css-var">--gw-button-warn-active-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.border.color</td>
+            <td>{tint.warning.border}</td>
+            <td class="css-var">--gw-button-warn-border-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.color</td>
+            <td>{tint.warning.text}</td>
+            <td class="css-var">--gw-button-warn-color</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(40, 60%, 25%)"></span> hsl(40, 60%, 25%)
+            </td>
+          </tr>
+          <tr>
+            <td>button.warn.focus.ring.color</td>
+            <td>{focus.ring.color}</td>
+            <td class="css-var">--gw-button-warn-focus-ring-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(211, 34%, 45%)"></span> hsl(211, 34%, 45%)
             </td>
@@ -17881,23 +18273,23 @@
           </tr>
           <tr>
             <td>button.danger.background</td>
-            <td>{error.base}</td>
+            <td>{tint.danger.bg}</td>
             <td class="css-var">--gw-button-danger-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+              <span class="swatch" style="background:hsl(0, 60%, 94%)"></span> hsl(0, 60%, 94%)
             </td>
           </tr>
           <tr>
             <td>button.danger.hover.background</td>
-            <td>{error.dark}</td>
+            <td>{tint.danger.bg-hover}</td>
             <td class="css-var">--gw-button-danger-hover-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
+              <span class="swatch" style="background:hsl(0, 60%, 89%)"></span> hsl(0, 60%, 89%)
             </td>
           </tr>
           <tr>
             <td>button.danger.hover.border.color</td>
-            <td>{error.dark}</td>
+            <td>{tint.danger.text-hover}</td>
             <td class="css-var">--gw-button-danger-hover-border-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
@@ -17905,50 +18297,50 @@
           </tr>
           <tr>
             <td>button.danger.hover.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.danger.text-hover}</td>
             <td class="css-var">--gw-button-danger-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
             <td>button.danger.active.background</td>
-            <td>{error.base}</td>
+            <td>{tint.danger.bg-hover}</td>
             <td class="css-var">--gw-button-danger-active-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+              <span class="swatch" style="background:hsl(0, 60%, 89%)"></span> hsl(0, 60%, 89%)
             </td>
           </tr>
           <tr>
             <td>button.danger.active.border.color</td>
-            <td>{error.base}</td>
+            <td>{tint.danger.border-active}</td>
             <td class="css-var">--gw-button-danger-active-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
             <td>button.danger.active.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.danger.text-hover}</td>
             <td class="css-var">--gw-button-danger-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
             <td>button.danger.border.color</td>
-            <td>{error.base}</td>
+            <td>{tint.danger.border}</td>
             <td class="css-var">--gw-button-danger-border-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
             <td>button.danger.color</td>
-            <td>{contrast.text}</td>
+            <td>{tint.danger.text}</td>
             <td class="css-var">--gw-button-danger-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(210, 20%, 98%)"></span> hsl(210, 20%, 98%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
@@ -18089,10 +18481,10 @@
           </tr>
           <tr>
             <td>button.tertiary.hover.color</td>
-            <td>{foreground.on-surface.secondary}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-button-tertiary-hover-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18113,10 +18505,10 @@
           </tr>
           <tr>
             <td>button.tertiary.active.color</td>
-            <td>{foreground.on-surface.secondary}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-button-tertiary-active-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18129,10 +18521,10 @@
           </tr>
           <tr>
             <td>button.tertiary.color</td>
-            <td>{foreground.on-surface.secondary}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-button-tertiary-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18145,18 +18537,18 @@
           </tr>
           <tr>
             <td>button.tertiary.icon.color</td>
-            <td>{foreground.on-surface.secondary}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-button-tertiary-icon-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
             <td>button.tertiary.icon.second</td>
-            <td>{foreground.on-surface.secondary}</td>
+            <td>{foreground.on-surface.button-text}</td>
             <td class="css-var">--gw-button-tertiary-icon-second</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
@@ -18721,7 +19113,7 @@
           </tr>
           <tr>
             <td>link.emphasized.color</td>
-            <td>{primary_DEL.base}</td>
+            <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-link-emphasized-color</td>
             <td class="">
               <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
@@ -18969,7 +19361,7 @@
           </tr>
           <tr>
             <td>badge.primary.background</td>
-            <td>{primary_DEL.base}</td>
+            <td>{foreground.link.idle}</td>
             <td class="css-var">--gw-badge-primary-background</td>
             <td class="">
               <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
@@ -19177,18 +19569,18 @@
           </tr>
           <tr>
             <td>tag.primary.background</td>
-            <td>{primary.lighter}</td>
+            <td>{foreground.on-surface.primary}</td>
             <td class="css-var">--gw-tag-primary-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(240, 98%, 96%)"></span> hsl(240, 98%, 96%)
+              <span class="swatch" style="background:hsl(232, 98%, 41%)"></span> hsl(232, 98%, 41%)
             </td>
           </tr>
           <tr>
             <td>tag.primary.color</td>
-            <td>{primary.dark}</td>
+            <td>{foreground.on-brand}</td>
             <td class="css-var">--gw-tag-primary-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(231, 98%, 32%)"></span> hsl(231, 98%, 32%)
+              <span class="swatch" style="background:hsl(0, 0%, 100%)"></span> hsl(0, 0%, 100%)
             </td>
           </tr>
           <tr>
@@ -19233,10 +19625,10 @@
           </tr>
           <tr>
             <td>tag.info.color</td>
-            <td>{info.base}</td>
+            <td>{info.dark}</td>
             <td class="css-var">--gw-tag-info-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(211, 37%, 36%)"></span> hsl(211, 37%, 36%)
+              <span class="swatch" style="background:hsl(211, 37%, 28%)"></span> hsl(211, 37%, 28%)
             </td>
           </tr>
           <tr>
@@ -19265,10 +19657,10 @@
           </tr>
           <tr>
             <td>tag.danger.color</td>
-            <td>{error.base}</td>
+            <td>{error.text}</td>
             <td class="css-var">--gw-tag-danger-color</td>
             <td class="">
-              <span class="swatch" style="background:hsl(0, 60%, 51%)"></span> hsl(0, 60%, 51%)
+              <span class="swatch" style="background:hsl(0, 60%, 42%)"></span> hsl(0, 60%, 42%)
             </td>
           </tr>
           <tr>
@@ -20809,10 +21201,10 @@
           </tr>
           <tr>
             <td>swagger.get.background</td>
-            <td>{info.200}</td>
+            <td>{primary.lighter}</td>
             <td class="css-var">--gw-swagger-get-background</td>
             <td class="">
-              <span class="swatch" style="background:hsl(213, 36%, 89%)"></span> hsl(213, 36%, 89%)
+              <span class="swatch" style="background:hsl(240, 98%, 96%)"></span> hsl(240, 98%, 96%)
             </td>
           </tr>
           <tr>
@@ -20853,6 +21245,14 @@
             <td class="css-var">--gw-swagger-put-background</td>
             <td class="">
               <span class="swatch" style="background:hsl(48, 65%, 89%)"></span> hsl(48, 65%, 89%)
+            </td>
+          </tr>
+          <tr>
+            <td>swagger.patch.background</td>
+            <td>{info.light}</td>
+            <td class="css-var">--gw-swagger-patch-background</td>
+            <td class="">
+              <span class="swatch" style="background:hsl(213, 36%, 89%)"></span> hsl(213, 36%, 89%)
             </td>
           </tr>
           <tr>
@@ -24255,6 +24655,14 @@
             </td>
           </tr>
           <tr>
+            <td>contextmenu.item.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-contextmenu-item-focus-ring-style</td>
+            <td class="">
+              solid
+            </td>
+          </tr>
+          <tr>
             <td>contextmenu.transition.duration</td>
             <td>{transition.duration}</td>
             <td class="css-var">--gw-contextmenu-transition-duration</td>
@@ -24266,6 +24674,14 @@
             <td>dock.item.focus.ring.style</td>
             <td>{focus.ring.style}</td>
             <td class="css-var">--gw-dock-item-focus-ring-style</td>
+            <td class="">
+              solid
+            </td>
+          </tr>
+          <tr>
+            <td>megamenu.item.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-megamenu-item-focus-ring-style</td>
             <td class="">
               solid
             </td>
@@ -24287,11 +24703,27 @@
             </td>
           </tr>
           <tr>
+            <td>menu.item.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-menu-item-focus-ring-style</td>
+            <td class="">
+              solid
+            </td>
+          </tr>
+          <tr>
             <td>menu.transition.duration</td>
             <td>{transition.duration}</td>
             <td class="css-var">--gw-menu-transition-duration</td>
             <td class="">
               200ms
+            </td>
+          </tr>
+          <tr>
+            <td>menubar.item.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-menubar-item-focus-ring-style</td>
+            <td class="">
+              solid
             </td>
           </tr>
           <tr>
@@ -24308,6 +24740,14 @@
             <td class="css-var">--gw-menubar-transition-duration</td>
             <td class="">
               200ms
+            </td>
+          </tr>
+          <tr>
+            <td>panelmenu.item.focus.ring.style</td>
+            <td>{focus.ring.style}</td>
+            <td class="css-var">--gw-panelmenu-item-focus-ring-style</td>
+            <td class="">
+              solid
             </td>
           </tr>
           <tr>
@@ -26054,6 +26494,28 @@
             </td>
           </tr>
           <tr>
+            <td>button.warn.focus.ring.shadow</td>
+            <td><pre>{
+  "x": "0",
+  "y": "0",
+  "blur": "0",
+  "spread": "0",
+  "color": "#00000000",
+  "type": "dropShadow"
+}</pre></td>
+            <td class="css-var">--gw-button-warn-focus-ring-shadow</td>
+            <td class="">
+              <pre>{
+  "x": "0",
+  "y": "0",
+  "blur": "0",
+  "spread": "0",
+  "color": "#00000000",
+  "type": "dropShadow"
+}</pre>
+            </td>
+          </tr>
+          <tr>
             <td>button.help.focus.ring.shadow</td>
             <td><pre>{
   "x": "0",
@@ -27379,6 +27841,22 @@
             </td>
           </tr>
           <tr>
+            <td>contextmenu.item.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-contextmenu-item-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>contextmenu.item.focus.ring.offset</td>
+            <td>-2px</td>
+            <td class="css-var">--gw-contextmenu-item-focus-ring-offset</td>
+            <td class="">
+              -2px
+            </td>
+          </tr>
+          <tr>
             <td>dock.item.focus.ring.width</td>
             <td>{focus.ring.width}</td>
             <td class="css-var">--gw-dock-item-focus-ring-width</td>
@@ -27395,6 +27873,22 @@
             </td>
           </tr>
           <tr>
+            <td>megamenu.item.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-megamenu-item-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>megamenu.item.focus.ring.offset</td>
+            <td>-2px</td>
+            <td class="css-var">--gw-megamenu-item-focus-ring-offset</td>
+            <td class="">
+              -2px
+            </td>
+          </tr>
+          <tr>
             <td>megamenu.mobile.button.focus.ring.width</td>
             <td>{focus.ring.width}</td>
             <td class="css-var">--gw-megamenu-mobile-button-focus-ring-width</td>
@@ -27408,6 +27902,38 @@
             <td class="css-var">--gw-megamenu-mobile-button-focus-ring-offset</td>
             <td class="">
               1px
+            </td>
+          </tr>
+          <tr>
+            <td>menu.item.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-menu-item-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>menu.item.focus.ring.offset</td>
+            <td>-2px</td>
+            <td class="css-var">--gw-menu-item-focus-ring-offset</td>
+            <td class="">
+              -2px
+            </td>
+          </tr>
+          <tr>
+            <td>menubar.item.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-menubar-item-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>menubar.item.focus.ring.offset</td>
+            <td>-2px</td>
+            <td class="css-var">--gw-menubar-item-focus-ring-offset</td>
+            <td class="">
+              -2px
             </td>
           </tr>
           <tr>
@@ -27448,6 +27974,22 @@
             <td class="css-var">--gw-panelmenu-panel-last-border-width</td>
             <td class="">
               1px
+            </td>
+          </tr>
+          <tr>
+            <td>panelmenu.item.focus.ring.width</td>
+            <td>{focus.ring.width}</td>
+            <td class="css-var">--gw-panelmenu-item-focus-ring-width</td>
+            <td class="">
+              2px
+            </td>
+          </tr>
+          <tr>
+            <td>panelmenu.item.focus.ring.offset</td>
+            <td>-2px</td>
+            <td class="css-var">--gw-panelmenu-item-focus-ring-offset</td>
+            <td class="">
+              -2px
             </td>
           </tr>
           <tr>
@@ -33353,6 +33895,24 @@
   "fontWeight": "{font-weight.500}",
   "fontSize": "{h4.font.size}",
   "lineHeight": "100%"
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>chip.label</td>
+            <td><pre>{
+  "fontFamily": "{font.family.body}",
+  "fontWeight": "{font-weight.400}",
+  "fontSize": "{xs.font.size}",
+  "lineHeight": "{normal.line.height}"
+}</pre></td>
+            <td class="css-var">--gw-chip-label</td>
+            <td class="">
+              <pre>{
+  "fontFamily": "{font.family.body}",
+  "fontWeight": "{font-weight.400}",
+  "fontSize": "{xs.font.size}",
+  "lineHeight": "{normal.line.height}"
 }</pre>
             </td>
           </tr>

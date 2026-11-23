@@ -1,0 +1,1871 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CSS Variables Diff Report</title>
+<style>
+body { font-family: system-ui, sans-serif; background: #fafafa; color: #222; margin: 2rem; }
+h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+p { margin: 0.4rem 0; }
+.version-tag {
+  display: inline-block; padding: 0.25rem 0.6rem; border-radius: 0.5rem;
+  font-weight: 600; font-family: monospace;
+}
+.local-version { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.npm-version { background: #fff3e0; color: #ef6c00; border: 1px solid #ffb74d; }
+
+/* Filters layout (non-sticky) */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  max-width: 900px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+.filter-block { flex: 1 1 250px; display: flex; flex-direction: column; min-width: 200px; }
+label { font-size: 0.9rem; font-weight: 600; color: #444; margin-bottom: 0.25rem; }
+input, select { padding: 0.5rem; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; box-shadow: 0 0 8px rgba(0,0,0,0.05); }
+th, td { border: 1px solid #ddd; padding: 0.5rem 0.75rem; text-align: left; font-size: 0.95rem; }
+th { background: #f4f4f4; position: sticky; top: 0; z-index: 5; }
+tr:nth-child(even) { background: #f9f9f9; }
+.Removed { color: #d32f2f; font-weight: 600; }
+.Changed { color: #f57c00; font-weight: 600; }
+.Added { color: #2e7d32; font-weight: 600; }
+.Renamed { color: #1565c0; font-weight: 600; }
+.Deprecated { color: #6a1b9a; font-weight: 600; }
+.new-badge {
+  display: inline-block; margin-left: 0.4rem; padding: 0 0.35rem; border-radius: 0.4rem;
+  background: #f3e5f5; border: 1px solid #ce93d8; font-size: 0.75rem; font-weight: 600;
+}
+.replaced-by { margin-top: 0.2rem; color: #6a1b9a; }
+.renamed-to { margin-top: 0.2rem; color: #1565c0; }
+.name-label { display: inline-block; width: 2.5rem; color: #888; font-size: 0.85rem; }
+#countInfo { margin-top: 0.75rem; font-weight: 500; color: #555; }
+</style>
+</head>
+<body>
+<h1>🎨 CSS Variables Diff Report</h1>
+<p><strong>Generated:</strong> 11/23/2026, 1:28:08 PM</p>
+<p><strong>Comparison between:</strong> 
+  <span class="version-tag local-version">graphwise-styleguide@1.3.4 (local)</span> and 
+  <span class="version-tag npm-version">graphwise-styleguide@1.3.3 (npm)</span>
+</p>
+
+<div class="controls">
+  <div class="filter-block">
+    <label for="themeFilter">Theme File</label>
+    <select id="themeFilter">
+      <option value="">All themes</option>
+      <option value="variables-dark.css">variables-dark.css</option><option value="variables-light.css">variables-light.css</option>
+    </select>
+  </div>
+  <div class="filter-block">
+    <label for="searchInput">CSS Variable</label>
+    <input type="text" id="searchInput" placeholder="🔍 Search variable name..." />
+  </div>
+  <div class="filter-block">
+    <label for="statusFilter">Status</label>
+    <select id="statusFilter">
+      <option value="">All statuses</option>
+      <option value="Removed">Removed</option>
+      <option value="Added">Added</option>
+      <option value="Renamed">Renamed</option>
+      <option value="Changed">Changed</option>
+      <option value="Deprecated">Deprecated</option>
+    </select>
+  </div>
+</div>
+
+<p id="countInfo">Total: 217</p>
+
+<table id="diffTable">
+  <thead>
+    <tr>
+      <th>Theme</th>
+      <th>CSS Variable</th>
+      <th>Status</th>
+      <th>Old Value</th>
+      <th>New Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-swagger-get-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-info-200)</td>
+        <td>var(--gw-primary-lighter)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-foreground-on-surface-button-text</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-darker)</td>
+        <td>var(--gw-primary-dark)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-form-field-placeholder-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-read-only)</td>
+        <td>var(--gw-foreground-on-surface-placeholder)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-sidenav-menuitem-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-sidenav-menuitem-selected-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-sidenav-menuitem-selected-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-hover-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-dark)</td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warning-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-bg)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-hover-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-dark)</td>
+        <td>var(--gw-tint-danger-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-dark)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-border-active)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-border)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-danger-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-tertiary-icon-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-highlight-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-badge-primary-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-tag-primary-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-lighter)</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-tag-primary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-dark)</td>
+        <td>var(--gw-foreground-on-brand)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-tag-info-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-info-base)</td>
+        <td>var(--gw-info-dark)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-tag-danger-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-error-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-link-emphasized-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-dark.css</td>
+        <td>--gw-button-primary-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-strong)</td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-contextmenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-megamenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menubar-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-panelmenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-blur</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-spread</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>rgba(0, 0, 0, 0)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-type</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>dropShadow</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-offset-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-offset-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-chip-remove-icon-padding</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-contextmenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-megamenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menubar-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-panelmenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-chip-label-font-family</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-font-family-body)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-chip-label-font-weight</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-font-weight-400)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-chip-label-font-size</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-xs-font-size)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-chip-label-line-height</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-normal-line-height)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-bg</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-100)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-bg-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-200)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-border</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-600)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-border-active</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-text</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-600)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-danger-text-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-bg</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-100)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-bg-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-200)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-border</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-500)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-border-active</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-text</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-500)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-tint-warning-text-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-foreground-on-surface-placeholder</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-neutral-400)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-contextmenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-megamenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menubar-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-panelmenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-text-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-outlined-primary-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-button-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-outlined-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-outlined-warn-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-hover-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-hover-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-hover-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-active-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-active-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-active-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-swagger-patch-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-info-light)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-text-secondary-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-text-muted-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-text-danger-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-error-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-outlined-primary-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-button-warn-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-contextmenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-megamenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-menubar-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-dark.css</td>
+        <td>--gw-panelmenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-swagger-get-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-info-200)</td>
+        <td>var(--gw-primary-lighter)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-form-field-placeholder-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-read-only)</td>
+        <td>var(--gw-foreground-on-surface-placeholder)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-sidenav-menuitem-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-sidenav-menuitem-selected-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-sidenav-menuitem-selected-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-default)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-hover-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-dark)</td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-warning-base)</td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-warning-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-bg)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-hover-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-dark)</td>
+        <td>var(--gw-tint-danger-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-dark)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-active-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-active-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-border-active)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-tint-danger-border)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-danger-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-contrast-text)</td>
+        <td>var(--gw-tint-danger-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-hover-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-active-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-icon-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-tertiary-icon-second</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-secondary)</td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-highlight-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-badge-primary-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-tag-primary-background</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-lighter)</td>
+        <td>var(--gw-foreground-on-surface-primary)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-tag-primary-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-dark)</td>
+        <td>var(--gw-foreground-on-brand)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-tag-info-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-info-base)</td>
+        <td>var(--gw-info-dark)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-tag-danger-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-error-base)</td>
+        <td>var(--gw-error-text)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-link-emphasized-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-primary-del-base)</td>
+        <td>var(--gw-foreground-link-idle)</td>
+      </tr>
+    
+      <tr data-status="Changed">
+        <td>variables-light.css</td>
+        <td>--gw-button-primary-hover-border-color</td>
+        <td class="Changed">Changed</td>
+        <td>var(--gw-foreground-on-surface-strong)</td>
+        <td>var(--gw-primary-light)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-contextmenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-megamenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menubar-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-panelmenu-item-focus-ring-offset</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>-2px</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-blur</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-spread</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>rgba(0, 0, 0, 0)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-type</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>dropShadow</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-offset-x</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-shadow-offset-y</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>0</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-chip-remove-icon-padding</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-space-0-25)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-contextmenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-megamenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menubar-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-panelmenu-item-focus-ring-width</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-width)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-chip-label-font-family</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-font-family-body)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-chip-label-font-weight</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-font-weight-400)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-chip-label-font-size</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-xs-font-size)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-chip-label-line-height</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-normal-line-height)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-bg</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-200)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-bg-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-300)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-border</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-border-active</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-text</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-danger-text-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-danger-700)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-bg</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-300)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-bg-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-400)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-border</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-800)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-border-active</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-800)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-text</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-800)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-tint-warning-text-hover</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-warning-800)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-foreground-on-surface-placeholder</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-neutral-600)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-contextmenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-megamenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menubar-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-panelmenu-item-focus-ring-style</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-style)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-text-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-outlined-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-outlined-warn-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-hover-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-hover-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-hover-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-active-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-active-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-active-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-swagger-patch-background</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-info-light)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-text-secondary-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-text-muted-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-text-danger-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-error-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-outlined-primary-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-button-text)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-outlined-primary-border-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-foreground-on-surface-button-border)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-button-warn-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-contextmenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-megamenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-menubar-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Added">
+        <td>variables-light.css</td>
+        <td>--gw-panelmenu-item-focus-ring-color</td>
+        <td class="Added">Added</td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-active-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-active-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-active-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-focus-ring-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-focus-ring-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-hover-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-hover-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-dark.css</td>
+        <td><div>--gw-button-warning-hover-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-active-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-active-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-border-active)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-active-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-active-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-border)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-focus-ring-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-focus-ring-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-focus-ring-color)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-hover-background</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-background</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-bg-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-hover-border-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+      <tr data-status="Deprecated">
+        <td>variables-light.css</td>
+        <td><div>--gw-button-warning-hover-color</div><div class="replaced-by"><span class="name-label">use:</span> --gw-button-warn-hover-border-color</div></td>
+        <td class="Deprecated">Deprecated<span class="new-badge" title="Deprecated in this release">new</span></td>
+        <td></td>
+        <td>var(--gw-tint-warning-text-hover)</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const themeFilter = document.getElementById("themeFilter");
+const statusFilter = document.getElementById("statusFilter");
+const table = document.getElementById("diffTable").getElementsByTagName("tbody")[0];
+const countInfo = document.getElementById("countInfo");
+
+function filterTable() {
+  const query = searchInput.value.toLowerCase();
+  const selectedTheme = themeFilter.value;
+  const selectedStatus = statusFilter.value;
+  let visibleCount = 0;
+
+  for (const row of table.rows) {
+    const theme = row.cells[0].innerText;
+    const variable = row.cells[1].innerText.toLowerCase();
+    const status = row.dataset.status;
+    const match = (!query || variable.includes(query)) &&
+                  (!selectedTheme || theme === selectedTheme) &&
+                  (!selectedStatus || status === selectedStatus);
+    row.style.display = match ? "" : "none";
+    if (match) visibleCount++;
+  }
+
+  countInfo.textContent = "Total: " + visibleCount;
+}
+
+searchInput.addEventListener("input", filterTable);
+themeFilter.addEventListener("change", filterTable);
+statusFilter.addEventListener("change", filterTable);
+</script>
+</body>
+</html>
