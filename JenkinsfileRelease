@@ -1,18 +1,23 @@
 @Library('ontotext-platform@v0.1.56') _
 
-def performCleanup = {
-    dir("${env.WORKSPACE}") {
-        sh "rm -f .npmrc"
-    }
-}
+/*
+ * Release of graphwise-styleguide:
+ *   1. Validate: the version is well formed, not released yet, and the npm token works.
+ *   2. Build the package with the release version and generate the CSS variables summary for the release notes.
+ *   3. Push the release commit and tag in one atomic push; rejected when the branch moved.
+ *      A published npm version cannot be replaced, so nothing is published before the push.
+ *   4. Publish the package to npm.
+ *   5. Create the GitHub release; the package is already published, so a failure here only marks the build unstable.
+ *
+ * The steps are in .jenkins/release-steps.groovy, the Slack messages in .jenkins/release-notifications.groovy.
+ */
+
+def release
+def notifications
 
 pipeline {
     agent {
         label 'aws-small'
-    }
-
-    environment {
-        NODE_IMAGE = 'node:22.17.0-alpine3.22'
     }
 
     parameters {
@@ -29,16 +34,16 @@ pipeline {
             description: 'Version to release',
             defaultValue: ''
 
-        booleanParam(
-            name: 'NOTIFY_SLACK',
-            defaultValue: true,
-            description: 'Send Slack notification after successful build'
-        )
-
         string(
             name: 'SLACK_CHANNEL',
             defaultValue: '#frontend-notifications',
-            description: 'Slack channel for notification (only used if checkbox above is selected)'
+            description: 'Slack channel notified when the release succeeds, fails or is aborted'
+        )
+
+        booleanParam(
+            name: 'DRY_RUN',
+            defaultValue: false,
+            description: 'Build and validate, but run git push and npm publish with --dry-run and write the GitHub release notes to an archived file'
         )
     }
 
@@ -49,92 +54,48 @@ pipeline {
     }
 
     stages {
-        stage ('Prepare') {
+        stage('Prepare') {
             steps {
                 script {
-                    git_cmd.checkout(branch: params.GIT_BRANCH)
-                    withNode(image: NODE_IMAGE) {
-                        npm.prepareRelease(version: params.RELEASE_VERSION, scripts: ['build']);
-                        // The CSS variables summary for the GitHub release notes, generated before anything is
-                        // pushed, so a failure here stops the release while it can still be repeated.
-                        sh "npm run compare-css-variables -- --before ${params.RELEASE_VERSION}"
-                    }
+                    // Loaded before the checkout, so they come from the same commit as this file.
+                    release = load '.jenkins/release-steps.groovy'
+                    notifications = load '.jenkins/release-notifications.groovy'
                 }
             }
         }
 
-        // The release commit and tag are pushed before publishing to npm: a published npm version cannot be
-        // replaced, so if the push fails (e.g. the branch moved meanwhile) nothing must be published yet.
-        // If the publish fails after a successful push, it can be retried from the pushed tag.
-        stage ('Commit & Tag') {
+        stage('Validate & Build') {
             steps {
                 script {
-                    sh "git commit -a -m 'Release ${params.RELEASE_VERSION}'"
-                    sh "git tag -a v${params.RELEASE_VERSION} -m 'Release v${params.RELEASE_VERSION}'"
-
-                    withKsm(application: [
-                        [
-                            credentialsId: 'ksm-jenkins',
-                            secrets: [
-                                [destination: 'env', envVar: 'GIT_USER', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/login'],
-                                [destination: 'env', envVar: 'GIT_TOKEN', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/password']
-                            ]
-                        ]
-                    ]) {
-                        sh 'mkdir -p ~/.ssh'
-                        sh 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
-
-                        sh 'git config --global user.name "$GIT_USER"'
-                        sh 'git config --global user.email "$GIT_USER@users.noreply.github.com"'
-
-                        sh 'git remote set-url origin git@github.com:Ontotext-AD/graphwise-styleguide.git'
-                        // --atomic: either both the branch and the tag are pushed, or neither.
-                        sh "git push --atomic --set-upstream origin ${params.GIT_BRANCH} v${params.RELEASE_VERSION}"
-                    }
+                    release.checkout(params.GIT_BRANCH)
+                    release.validate(params.RELEASE_VERSION)
+                    release.build(params.RELEASE_VERSION, params.GIT_BRANCH)
                 }
             }
         }
 
-        stage ('Publish') {
+        stage('Push') {
             steps {
                 script {
-                    withNode(image: NODE_IMAGE) {
-                        withKsm(application: [
-                            [
-                                credentialsId: 'ksm-jenkins',
-                                secrets: [
-                                    [destination: 'env', envVar: 'NPM_TOKEN', filePath: '', notation: 'keeper://FcbEgbi287PN2yx_3uCz4Q/field/note'],
-                                ]
-                            ]
-                        ]) {
-                            sh "echo //registry.npmjs.org/:_authToken=\${NPM_TOKEN} > .npmrc"
-                            sh "npm whoami || echo 'whoami failed'"
-                            sh "npm publish"
-                        }
-                    }
+                    release.push(params.RELEASE_VERSION, params.GIT_BRANCH, params.DRY_RUN)
                 }
             }
         }
 
-        // The package is already published at this point, so a failure here only marks the build unstable.
-        // The release can then be created from the tag: see README.md → Publish New Package Version.
-        stage ('GitHub Release') {
+        stage('Publish') {
             steps {
-                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                script {
+                    release.publish(params.RELEASE_VERSION, params.DRY_RUN)
+                }
+            }
+        }
+
+        stage('GitHub Release') {
+            steps {
+                // catchInterruptions: false, so that an abort or a timeout here is reported as an abort.
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE', catchInterruptions: false) {
                     script {
-                        withNode(image: NODE_IMAGE) {
-                            withKsm(application: [
-                                [
-                                    credentialsId: 'ksm-jenkins',
-                                    secrets: [
-                                        [destination: 'env', envVar: 'GITHUB_TOKEN', filePath: '', notation: 'keeper://8hm1g9HCfBPgoWAmpiHn6w/field/password']
-                                    ]
-                                ]
-                            ]) {
-                                sh "node src/create-github-release.js --version ${params.RELEASE_VERSION}"
-                            }
-                        }
-                        env.RELEASE_URL = readFile('generated/release-url.txt').trim()
+                        release.githubRelease(params.RELEASE_VERSION, params.GIT_BRANCH, params.DRY_RUN)
                     }
                 }
             }
@@ -149,44 +110,31 @@ pipeline {
         }
         success {
             script {
-                performCleanup()
-
-                if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
-                    try {
-                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'good', message:":graphwise: :party-blob: :graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}\nRelease notes: ${env.RELEASE_URL}")
-                    } catch (e) {
-                        echo "Slack notification failed: ${e.getMessage()}"
-                    }
+                if (notifications) {
+                    notifications.released(release.progress())
                 }
             }
         }
-
-        // Published to npm, but the GitHub release failed.
-        unstable {
-            wrap([$class: 'BuildUser']) {
-                sendMail(env.BUILD_USER_EMAIL)
-            }
-
+        unsuccessful {
             script {
-                performCleanup()
-
-                if (params.NOTIFY_SLACK && params.SLACK_CHANNEL?.trim()) {
-                    try {
-                        slack.notifyResult(channel: params.SLACK_CHANNEL, color:'warning', message:":graphwise: Released graphwise-styleguide v${params.RELEASE_VERSION}, but the GitHub release failed")
-                    } catch (e) {
-                        echo "Slack notification failed: ${e.getMessage()}"
+                // Not loaded when the build stopped before Prepare, e.g. in the SCM checkout.
+                // No "?.": Groovy would still evaluate release.progress() and throw, skipping the mail.
+                if (notifications) {
+                    String result = currentBuild.currentResult
+                    if (result == 'UNSTABLE') {
+                        notifications.releasedWithoutGithubRelease(release.progress())
+                    } else {
+                        notifications.stopped(release.progress(), result == 'ABORTED')
                     }
                 }
             }
-        }
-
-        failure {
             wrap([$class: 'BuildUser']) {
                 sendMail(env.BUILD_USER_EMAIL)
             }
-
+        }
+        cleanup {
             script {
-                performCleanup()
+                release?.cleanup(params.RELEASE_VERSION)
             }
         }
     }
