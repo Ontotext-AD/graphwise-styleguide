@@ -193,16 +193,26 @@ mark the synced commits.
 #### With Jenkins (recommended)
 A UI developer runs the release job (`JenkinsfileRelease`) with `GIT_BRANCH` (usually `master`) and `RELEASE_VERSION`
 (following semantic versioning). The job:
-1. sets the version in `package.json`, builds the stylesheets and generates the CSS variables summary against the
+1. fails before building when the version is not `X.Y.Z`, its tag or npm version already exists, or the npm token is
+   invalid
+2. sets the version in `package.json`, builds the stylesheets and generates the CSS variables summary against the
    previous release
-2. commits `Release X.Y.Z`, creates the `vX.Y.Z` tag and pushes both (atomically)
-3. publishes the package to npm
-4. creates the GitHub release `vX.Y.Z` (see [Release notes](#release-notes))
-5. sends a Slack notification with a link to the release
+3. commits `Release X.Y.Z`, creates the `vX.Y.Z` tag and pushes both (atomically)
+4. publishes the package to npm
+5. creates the GitHub release `vX.Y.Z` (see [Release notes](#release-notes))
 
 The commit and tag are pushed before publishing, because a published npm version cannot be replaced. If the push
-fails, nothing is published. If the publish fails after the push, publish manually from the tag (see below, `npm publish`
-step). If only the GitHub release fails, the build is unstable; create the release manually (see below).
+fails (e.g. the branch moved during the build), nothing is published and the release can be rerun with the same
+version. If the publish fails after the push, publish manually from the tag (see below, `npm publish` step). If only
+the GitHub release fails, the build is unstable; create the release manually (see below).
+
+The job notifies `SLACK_CHANNEL` on every result. A failure or abort message names the step where the release stopped
+(also shown in the build description), what was already published and what to do next.
+
+With `DRY_RUN` the job validates and builds, runs the push and `npm publish` with `--dry-run`, and archives the GitHub
+release notes in the build instead of creating the release. The tag is not pushed then, so the notes end at
+`GIT_BRANCH`. The steps are in `.jenkins/release-steps.groovy` and the Slack messages in
+`.jenkins/release-notifications.groovy`, kept close to the same files in graphdb-workbench.
 
 #### Manually
 Requires push rights to `master` and an npm login (`npm login`).

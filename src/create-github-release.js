@@ -13,6 +13,8 @@
 //   GITHUB_TOKEN=<token> node src/create-github-release.js --version X.Y.Z
 //   GITHUB_TOKEN=<token> node src/create-github-release.js --version X.Y.Z --dry-run
 //       write the notes to generated/release-notes.md instead of creating the release
+//   GITHUB_TOKEN=<token> node src/create-github-release.js --version X.Y.Z --dry-run --target master
+//       end the notes at the master branch instead of the vX.Y.Z tag, for a dry run before the tag is on GitHub
 import fs from 'fs';
 import path from 'path';
 
@@ -39,6 +41,7 @@ function fail(message) {
 
 const version = getArg('version');
 const isDryRun = process.argv.includes('--dry-run');
+const target = getArg('target');
 const token = process.env.GITHUB_TOKEN;
 if (!version || !STABLE_VERSION_PATTERN.test(version)) {
   fail(`Pass the released version with --version X.Y.Z, got: ${JSON.stringify(version)}`);
@@ -46,10 +49,15 @@ if (!version || !STABLE_VERSION_PATTERN.test(version)) {
 if (!token) {
   fail('The GITHUB_TOKEN environment variable is not set.');
 }
+if (target && !isDryRun) {
+  fail('--target is only for --dry-run: a release always ends at its tag.');
+}
 if (!fs.existsSync(CSS_DIFF_FILE)) {
   fail(`Missing ${CSS_DIFF_FILE}. Run "npm run compare-css-variables -- --before ${version}" first.`);
 }
 const tag = `v${version}`;
+// The ref the notes end at: the tag, or --target while the tag is not on GitHub yet.
+const head = target || tag;
 
 async function github(method, endpoint, body) {
   const response = await fetch(`https://api.github.com/repos/${REPOSITORY}${endpoint}`, {
@@ -105,7 +113,7 @@ async function designTokenSection(previousTag) {
   if (!previousTag) {
     return undefined;
   }
-  const comparison = await github('GET', `/compare/${previousTag}...${tag}?per_page=250`);
+  const comparison = await github('GET', `/compare/${previousTag}...${head}?per_page=250`);
   const syncs = comparison.commits
     .map((commit) => commit.commit.message)
     .filter((message) => new RegExp(`^${TRAILER}: [0-9a-f]{40}$`, 'm').test(message))
@@ -132,6 +140,7 @@ const links = [
 const designTokens = await designTokenSection(previousTag);
 const { body: pullRequests } = await github('POST', '/releases/generate-notes', {
   tag_name: tag,
+  ...(target && { target_commitish: target }),
   ...(previousTag && { previous_tag_name: previousTag }),
 });
 
